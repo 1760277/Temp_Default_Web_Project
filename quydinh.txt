@@ -1,0 +1,31 @@
+1. Quy định đặt tên: 
+    + Tên Class: Viết hoa chữ cái đầu
+        Vd: Class User_Staff
+    + Tên Biến: Quy tắc lạc đà
+        Vd: var userStaffID
+    + Tên hằng số: Viết hoa hết
+        Vd: SESSION
+    + Tên phương thức: Chức năng viết thường, tên viết hoa chữ cái đầu 
+        Vd: getUserByID()
+    + Tất cả code đều viết bằng tiếng anh, trừ những thứ cần hiển thị.
+2. Quy định comment:
+    + Tất cả các hàm đều phải comment.
+    + Đối với biến comment multiline
+        Vd: 
+            var userID
+            var fullName
+            /*
+            userID là tuấn anh quần què
+            fullName Kiều Thanh Cute
+            */
+3. Quy định commit:
+    + Khi commit bao gồm hai nội dung:
+        -> commit lần mấy.
+        -> trong file thay đổi những gì.
+
+** NOTES
+    1. Làm bài đúng dealine.
+    2. Nội dung code phải có ý nghĩa.
+    3. Để dành tiền xong đồ án đi nhậu. (200k) 
+        đến ngày thuyết tình gom 50% chi phí,
+        ** AI KHÔNG ĐI MẤT RÁNG CHỊU **     
