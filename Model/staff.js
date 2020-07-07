@@ -48,22 +48,22 @@ class Staff extends MODEL{
         allowNull: false,
     },
     password: {
-        type: SEQUELIZE.STRING,    
+        type: SEQUELIZE.STRING,
     },
     birthDay: {
-        type: SEQUELIZE.DATE,       
+        type: SEQUELIZE.DATE,
     },
     address: {
-        type: SEQUELIZE.STRING,   
+        type: SEQUELIZE.STRING,
     },
     officeBank: {
         type: SEQUELIZE.STRING,
-        allowNull: false,       
-    },    
+        allowNull: false,
+    },
     permition: {
         type: SEQUELIZE.BOOLEAN,
         allowNull: false,
-    },    
+    },
 },{
         sequelize: DB,
         modelName: 'staff',   
