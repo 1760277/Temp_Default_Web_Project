@@ -6,24 +6,22 @@ const DB = require('./db');
 const MODEL = SEQUELIZE.Model;
 
 class PaymentAccount extends MODEL{
-   static async findById(id) {
-        return PaymentAccount.findByPk(id);
-    } 
-    static async createPaymentAccount(status){
-        return PaymentAccount.create({
-            status: status,
-        });
-    };
+
   }
  PaymentAccount.init({   
+    accountNumber:{
+        type: SEQUELIZE.STRING,
+        allowNull: false,
+        unique: true,
+    }, 
     status: {
         type: SEQUELIZE.BOOLEAN,
         allowNull: false,
-    },
-    currency: {
-        type: SEQUELIZE.STRING,
+    },  
+    bankAddress: {
+        type: SEQUELIZE.BOOLEAN,
         allowNull: false,
-    },        
+    },     
     currentBalance: {
         type: SEQUELIZE.DECIMAL,
         allowNull: false,
@@ -32,6 +30,7 @@ class PaymentAccount extends MODEL{
         type: SEQUELIZE.DECIMAL,
         allowNull: false,
     },    
+    
 },{
         sequelize: DB,
         modelName: 'paymentAccount',

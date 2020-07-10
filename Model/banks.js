@@ -5,18 +5,34 @@ const DB = require('./db');
 const MODEL = SEQUELIZE.Model;
 
 class Banks extends MODEL{
-   static async findBanhkByCode(bankCode) {
+
+   static async findBankByCode(bankCode) {
         return Banks.findOne({
-            where:
-                 bankCode
+            where: bankCode
     });
-  }  
+  }  ;
+
+  static async getAllBank()
+  {
+      return Banks.findAll();
+  };
+
+  static async createBanks(bankCode,Name )
+  {
+    Banks.create(
+        {
+            bankCode: bankCode,
+            bankName: Name,
+        }
+    )
+  };
 }
 
  Banks.init({       
     bankCode: {
         type: SEQUELIZE.STRING,        
-        allowNull: false,        
+        allowNull: false,
+        primaryKey: true ,      
     }, 
     bankName: {
         type: SEQUELIZE.STRING,

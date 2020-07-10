@@ -30,7 +30,6 @@ class Staff extends MODEL{
     static async createStaff(email, password, fullName, officeBank){
         return Staff.create({
             email: email,
-            permition: false,
             password: password,
             fullName: fullName,
             officeBank: officeBank,
@@ -38,6 +37,11 @@ class Staff extends MODEL{
     }
  }
  Staff.init({
+    userName:{
+        type: SEQUELIZE.STRING,
+        allowNull: false,
+        unique: true,
+    },
     email:{
         type: SEQUELIZE.STRING,
         allowNull: false,
@@ -48,22 +52,12 @@ class Staff extends MODEL{
         allowNull: false,
     },
     password: {
+        type: SEQUELIZE.STRING,    
+    },
+    officeBankId: {
         type: SEQUELIZE.STRING,
-    },
-    birthDay: {
-        type: SEQUELIZE.DATE,
-    },
-    address: {
-        type: SEQUELIZE.STRING,
-    },
-    officeBank: {
-        type: SEQUELIZE.STRING,
-        allowNull: false,
-    },
-    permition: {
-        type: SEQUELIZE.BOOLEAN,
-        allowNull: false,
-    },
+        allowNull: false,       
+    },        
 },{
         sequelize: DB,
         modelName: 'staff',   

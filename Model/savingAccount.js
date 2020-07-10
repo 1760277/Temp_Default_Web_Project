@@ -3,40 +3,31 @@ const BCRYPT = require('bcrypt');
 const SEQUELIZE = require('sequelize');
 const CUSTOM = require('./custom')
 const DB = require('./db');
+const { NOW } = require('sequelize');
 const MODEL = SEQUELIZE.Model;
 
 class SavingAccount extends MODEL{
-    static async findById(id) {
-        return SavingAccount.findByPk(id);
-    }
-
-    static async findByAccountNumber(accountNumber){
-        return SavingAccount.findOne({
-            where: accountNumber,
-        });
-    }
-
-    static async createSavingAccount(currency, moneySending, interestRate, closeDate){
-        return SavingAccount.create({
-            currency: currency,
-            moneySending: moneySending,
-            interestRate: interestRate,
-            closeDate: closeDate,
-        });
-    };
 
   }
- SavingAccount.init({
+ SavingAccount.init({   
+    savingAccountNumber:{
+        type: SEQUELIZE.STRING,
+        allowNull: false,
+        unique: true,
+    }, 
     status: {
         type: SEQUELIZE.BOOLEAN,
         allowNull: false,
-        defaultValue: true,
-    },
-    currency: {
-        type: SEQUELIZE.STRING,
+    },  
+    accountType: {
+        type: SEQUELIZE.BOOLEAN,
         allowNull: false,
     },
     moneySending: {
+        type: SEQUELIZE.DECIMAL,
+        allowNull: false,
+    },
+    moneyReceive: {
         type: SEQUELIZE.DECIMAL,
         allowNull: false,
     },
@@ -53,10 +44,13 @@ class SavingAccount extends MODEL{
         type: SEQUELIZE.DATE,
         allowNull: false,
     },
-}, {
+    staffId: {
+        type: SEQUELIZE.INTEGER,
+        allowNull: true,
+    }
+},{
         sequelize: DB,
         modelName: 'savingAccount',
-});
-CUSTOM.hasMany(SavingAccount);
-SavingAccount.belongsTo(CUSTOM);
-module.exports = SavingAccount;
+ });
+
+ module.exports = SavingAccount;
