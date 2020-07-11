@@ -412,8 +412,15 @@ class SavingAccount extends MODEL{
         }
     }
 
-  }
- SavingAccount.init({   
+    static async CreateSavingAccount(moneySending, interestRate, closeDate){
+        return SavingAccount.create({
+            moneySending: moneySending,
+            interestRate: interestRate,
+            closeDate: closeDate,
+        });
+    }
+}
+SavingAccount.init({   
     savingAccountNumber:{
         type: SEQUELIZE.STRING,
         allowNull: false,
