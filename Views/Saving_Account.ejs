@@ -39,17 +39,24 @@
               </div>
               <form class="user" method="POST">
                 <div class="form-group">
+                    <label for="type">Saving Account's Type: </label>
+                    <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_period">
+                      <option id="Month" value="Month">Month</option>
+                      <option id="Year" value="Year">Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="period" name="period" placeholder="Period Of Saving Account">
                 </div>
                 <div class="form-group">
-                  <input type="date" class="form-control form-control-user" id="closeDate" name="closeDate" placeholder="Close Date">
+                  <input type="text" class="form-control form-control-user" id="moneySending" name="moneySending" placeholder="Money Sending">
                 </div>
                 <div class="form-group">
                     <label for="type">Saving Account's Type: </label>
-                    <select id="type" class="autocomplete">
-                      <option value="1">Quarterly</option>
-                      <option value="2">Limited</option>
-                      <option value="3">Unlimited</option>
+                    <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_type">
+                      <option id="Quarterly" value="Quarterly">Quarterly</option>
+                      <option id="Limited" value="Limited">Limited</option>
+                      <option id="Unlimited" value="Unlimited">Unlimited</option>
                     </select>
                 </div>
                 <div class="form-group">                                
