@@ -1,4 +1,5 @@
  <%- include('User_Header', {title: 'Accuracy'}); -%>
+   
 
 	<div class="w3ls-section contact">
 		<div class="container"> 
@@ -24,12 +25,26 @@
 				</div>
 				<div class="col-md-7 w3l_contact_form">
 					<h4>Accuracy Form</h4> 
-					<form action="#" method="post">
-						<input type="text" name="areaCreate" value="area Create" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'area Create';}" required = "">
-						<input type="text" name="dateCreate" value="date Create" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'date Create';}" required="">
-						
-						<textarea name="Message notes" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
-						<input type="submit" value="Submit">
+					<form  method="post">		
+						<div class="form-group">
+							<input type="text" style="text-align: center;" class="form-control form-control-user" id="fullName" name="fullName"  placeholder="full name" value=<%= verifyAccount.fullName %> >
+						</div>
+						<div class="form-group">
+							<input type="date" style="text-align: center;" class="form-control form-control-user" id="birthDate" name="birthDate"  placeholder="00/00/0000" value=<%= verifyAccount.birthDate %> >
+						</div>
+						<div class="form-group">
+							<input type="text" style="text-align: center;" class="form-control form-control-user" id="address" name="address"  placeholder="address" value=<%= verifyAccount.address %>  >
+						</div>		
+						<div class="form-group">
+							<input type="text" style="text-align: center;" class="form-control form-control-user" id="numberNationID" name="numberNation ID"  placeholder="number NationID" value=<%= verifyAccount.numberNationID %>  >
+						</div>  
+						<div class="form-group">
+							<input type="date" style="text-align: center;" class="form-control form-control-user" id="dateRange" name="dateRange"  placeholder="00/00/0000" value=<%= verifyAccount.dateRange %> >
+						</div>   
+						<div class="form-group">
+							<input type="text" style="text-align: center;" class="form-control form-control-user" id="addressRange" name="addressRange"  placeholder="address range" value=<%= verifyAccount.addressRange %>  >
+						</div>       									
+						<input type="submit" value="Submit"  >
 					</form>
 				</div>
 				

@@ -7,6 +7,37 @@ const MODEL = SEQUELIZE.Model;
 
 class PaymentAccount extends MODEL{
 
+    static async findbyAccountNumber(accountNumber){
+        return PaymentAccount.findOne(accountNumber);
+    }
+    static async createPaymentAccount(accountNumber,bankAddress,currentBalance,availableBalance){
+        return PaymentAccount.create({
+            accountNumber:accountNumber,
+            status:true,
+            bankAddress:bankAddress,
+            currentBalance:currentBalance,
+            availableBalance:availableBalance
+        })
+    }
+    static async updateBalace(currentBalance,availableBalance,accountNumber){
+        return PaymentAccount.update({
+            currentBalance:currentBalance,
+            availableBalance:availableBalance,
+        },{where:{
+            accountNumber:accountNumber
+        }
+    })
+    }
+    static async updateStatus(accountNumber){
+        return PaymentAccount.update({
+            status:false,
+        },{
+            where: {
+                accountNumber:accountNumber,
+            }
+        })
+    }
+
   }
  PaymentAccount.init({   
     accountNumber:{

@@ -6,6 +6,8 @@ var BIGUINT = require('biguint-format');
 const STAFF = require('../../Model/staff');
 const CUSTOMER = require('../../Model/custom');
 const EMAIL = require('../../Model/email');
+const VERRIFY_ACCOUNT = require('../../Model/verifyAccount');
+const { hashPassWord } = require('../../Model/staff');
 
 const ROUTER = new Router();
 
@@ -78,11 +80,11 @@ ROUTER.post('/staff', [
     const hashPassword = await STAFF.hashPassWord(req.body.password);
     const accountNumber = BIGUINT(CRYPTO.randomBytes(4), 'dec');
 
-    const staff = await STAFF.createStaff(req.body.email, hashPassword, req.body.fullName, req.body.officeBank);
+    const staff = await STAFF.createStaff(req.body.email, hashPassword, req.body.userName, req.body.officeBank);
 
     await EMAIL.send(staff.email, 'Tai Khoan Nhan Vien Trong Ngan Hang', `${staff.email}, ${req.body.password}`);
 
-    res.redirect('/register/staff');
+    res.redirect('/admin');
 }));
 
 
@@ -90,9 +92,13 @@ ROUTER.post('/staff', [
 ROUTER.get('/auto-create',ASYNC_HANDLER(async function(req,res){
     for (var index = 0; index < 100; index++) {
         const hashPassword = await STAFF.hashPassWord('1');
-        const staff = await STAFF.createStaff("staff_"+index+"@gmail.com", hashPassword, "BB staff " + index, "0");    
+        
+        const staff = await STAFF.createStaff("staff_"+index+"@gmail.com", hashPassword, "user_Staff_" + index,"BB_staff_" + index, "0");    
+        
+        const customer=await CUSTOMER.createCustom("BB"+(10000+index),"Custom_"+index +"@gmail.com",hashPassword,"user_"+ index,"");
+        // const statusVerify = await VERRIFY_ACCOUNT.updateStatus(false);
     
-        const customer=await CUSTOMER.createCustom("BB"+(10000+index),"Custom_"+index +"@gamil.com",hashPassword,"BB Custom" + index,"")
+        const verify_Account = await VERRIFY_ACCOUNT.createDefault(customer.id,"BB"+(10000+index), "address_"+index, "numberID_" + index , "addressRange_"+index);
     }
 
 

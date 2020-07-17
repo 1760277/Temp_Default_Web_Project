@@ -26,6 +26,7 @@ class Banks extends MODEL{
         }
     )
   };
+
 }
 
  Banks.init({       

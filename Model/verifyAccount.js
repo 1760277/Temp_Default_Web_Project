@@ -5,11 +5,15 @@ const MODEL = SEQUELIZE.Model;
 
 class VerifyAccount extends MODEL{
 
-    static async createDefault(fullName) {
+    static async createDefault(userID, fullName,address,numberNationID,addressRange ) {
         
         return VerifyAccount.create(
             {
-                fullName : fullName
+                userID: userID,
+                fullName : fullName,
+                address: address,
+                numberNationID:  numberNationID,                
+                addressRange: addressRange,
             }
         )
     }  
@@ -24,10 +28,10 @@ class VerifyAccount extends MODEL{
                 behindNationID: behindNationID,
                 dateRange: dateRange,
                 addressRange: addressRange,
-                status : false,
+                status : false,                
             },{
 
-                userID: id
+                where : {userID: id}
             });
     };
     
@@ -37,10 +41,28 @@ class VerifyAccount extends MODEL{
             status : true
         },
         {
-            userID: id
+            where : { userID : id}
+        });
+    };
+
+    static async updateRequest(id)
+    {
+        verifyPassWord.update({
+            requestVerify : true
+        },
+        {
+            where : { userID : id}
         });
     }
-
+    
+    static async findInfoByUserId(userID){
+        return VerifyAccount.findOne({
+            where: userID,
+        })
+    }
+    static async findAllVerifyAccount(){
+        return VerifyAccount.findAll();
+    }
   }
   VerifyAccount.init({   
     userID:{
@@ -52,7 +74,7 @@ class VerifyAccount extends MODEL{
         allowNull: false,
     },       
     birthDate:{
-        type: SEQUELIZE.DATE,
+        type: SEQUELIZE.DATEONLY,
         allowNull: true,
     },       
     address:{
@@ -62,7 +84,7 @@ class VerifyAccount extends MODEL{
     frontNationID:{
         type: SEQUELIZE.BLOB,
         allowNull: true,
-    },
+    },          
     behindNationID:{
         type: SEQUELIZE.BLOB,
         allowNull: true,
@@ -72,18 +94,23 @@ class VerifyAccount extends MODEL{
         allowNull: true,
     },
     dateRange:{
-        type: SEQUELIZE.DATE,
+        type: SEQUELIZE.DATEONLY,
         allowNull: true,
     },
     addressRange:{
         type: SEQUELIZE.STRING,
         allowNull: true,
-    },
+    },   
     status:{
         type: SEQUELIZE.BOOLEAN,
         defaultValue: false,
         allowNull: false,
     },
+    requestVerify:{
+        type: SEQUELIZE.BOOLEAN,
+        defaultValue: false,
+        allowNull: true,
+    }
 },{
         sequelize: DB,
         modelName: 'verifyAccount',

@@ -4,6 +4,23 @@ const MODEL = SEQUELIZE.Model;
 
 class DetailsPayment extends MODEL{
    
+    static async findAllbyDatePayment(datePayment){
+        return  DetailsPayment.findAll(datePayment);
+    }
+    static async createDetalsPayment(datePayment,codePayment,availableBalance,moneyDeposit,contentPayment,status){
+        return DetailsPayment.create({
+         datePayment:datePayment,
+         codePayment:codePayment,
+         availableBalance:availableBalance,
+         moneyDeposit:moneyDeposit,
+         contentPayment:contentPayment,
+         status:status
+        });
+    }
+    static async finallDetailsPayment(){
+        return DetailsPayment.findAll();
+    }
+    
   }
   DetailsPayment.init({   
     datePayment:{

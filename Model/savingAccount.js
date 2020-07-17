@@ -412,6 +412,10 @@ class SavingAccount extends MODEL{
         }
     }
 
+    static async InterestRate_Unlimited(moneySending, period){
+        return 0.5;
+    }
+
     static async CreateSavingAccount(moneySending, interestRate, closeDate, accountType){
         return SavingAccount.create({
             moneySending: moneySending,
@@ -420,13 +424,17 @@ class SavingAccount extends MODEL{
             accountType: accountType,
         });
     }
+
+    static async findById(id){
+        return SavingAccount.findByPk(id);
+    }
 }
-SavingAccount.init({   
+SavingAccount.init({
     savingAccountNumber:{
         type: SEQUELIZE.STRING,
         allowNull: false,
         unique: true,
-    }, 
+    },
     status: {
         type: SEQUELIZE.BOOLEAN,
         allowNull: false,

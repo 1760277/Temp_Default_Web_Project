@@ -12,7 +12,7 @@
                       <th>Name</th>
                       <th>email</th>
                       <th>Number</th>
-                      <th>Create At</th>
+                      <th>Create At</th>                     
                     </tr>
                   </thead>
                   <tfoot>
@@ -20,20 +20,19 @@
                       <th>Name</th>
                       <th>email</th>
                       <th>Number</th>
-                      <th>Create At</th>
+                      <th>Create At</th>                      
                     </tr>
                   </tfoot>
                   <tbody>
                     <% if (lst) { %>
-                     <% lst.forEach(item => { %>
+                     <% for( let index = 0; index < lst.length; index++ ) { %>
                       <tr>
-                        <td><%= item.fullName %></td>
-                        <td><%= item.email %></td>
-                        <td><%= item.accountNumber %> </td>
-                        <td><%= moment(item.createdAt).format( 'DD-MM-YYYY')  %></td>
+                        <td><%= verifyAccount[index].fullName %></td>
+                        <td><%= lst[index].email %></td>
+                        <td><%= lst[index].accountNumber %> </td>
+                        <td><%= moment(lst[index].createdAt).format( 'DD-MM-YYYY')  %></td>                       
                       </tr>
-
-                     <% }) %>>
+                     <% } %>>
                     <% } %>                   
                   </tbody>
                 </table>

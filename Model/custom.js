@@ -37,12 +37,12 @@ class Custom extends MODEL{
         return Custom.findAll();
     };
   
-    static async createCustom(accountNumber,email,password,fullName,token){
+    static async createCustom(accountNumber,email,password,userName,token){
         return Custom.create({
             accountNumber: accountNumber,           
             email:email,
-            password:password,
-            fullName:fullName,
+            passWord:password,
+            userName:userName,
             token:token,
         });
     };
@@ -54,8 +54,9 @@ class Custom extends MODEL{
             Custom.update(
                 {
                     passWord: this.hashPassWord(newPassword)
-                },{
-                    id:id
+                },  
+                {
+                    where : { id : id}
                 });
             
             return true;

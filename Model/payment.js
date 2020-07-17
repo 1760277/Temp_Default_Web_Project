@@ -4,6 +4,25 @@ const MODEL = SEQUELIZE.Model;
 
 class Payment extends MODEL{
    
+    static async createPayment(accountNumberSend,accountNumberReceive,nameCustomReceive,bankReceive,OTP){
+        return Payment.create({
+            accountNumberSend:accountNumberSend,
+            accountNumberReceive:accountNumberReceive,
+            nameCustomReceive: nameCustomReceive,
+            bankReceive: bankReceive,
+            OTP:OTP
+        })
+    }
+    /*static async updateOTP(accountNumberSend){
+        return Payment.update({
+            OTP:null,
+        },{
+            where:{
+                accountNumberSend:accountNumberSend,
+            }
+        })
+    }*/
+    
   }
  Payment.init({   
     accountNumberSend:{

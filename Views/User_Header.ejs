@@ -37,14 +37,15 @@
 						<li>
 							<h1><a href="index.html"><img src="user/images/logo.png" alt="logo"width="300" height="150"/></a></h1> 
 						 </li>
-						<li><a href="index.html" class="active">Home</a></li>
-						<li><a href="about.html" class="scroll">About</a></li>    
-						<li><a href="services.html" class="scroll">services</a></li>    
-						<li><a href="gallery.html" class="scroll">Gallery</a></li>
+						<li><a href="/" class="active">Home</a></li>
+						<li><a href="about.html" class="scroll">Payment</a></li>    
+						<li><a href="services.html" class="scroll">Saving</a></li>    
+						<li><a href="gallery.html" class="scroll">History Deal</a></li>
 						<% if (currentCustom) { %>
-							<li><a href="#" data-toggle="dropdown"><%= currentCustom.fullName %><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="/profile">Profile</a></li>
+							<li><a href="#" data-toggle="dropdown" ><%= currentCustom.userName %><span class="caret"> </span></a>
+								<ul class="dropdown-menu">									
+									<li><a href="/custom/profile">Profile</a></li>
+									<li><a href="/accuracy">Verify Account</a></li>
 									<li><a href="/logout">Log out</a></li>
 								</ul>
 							</li>

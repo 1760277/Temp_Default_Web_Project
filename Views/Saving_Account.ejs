@@ -1,86 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('User_Header', {title: 'Accuracy'}); -%>
+   
 
-<head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Saving Account</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
-
-</head>
-
-<body class="bg-gradient-primary">
-
-  <div class="container">
-
-    <div class="card o-hidden border-0 shadow-lg my-5">
-      <div class="card-body p-0">
-        <!-- Nested Row within Card Body -->
-        <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-          <div class="col-lg-7">
-            <a id="linkOne" href="/" >
-              <img src="/user/images/logo.png">
-            </a>
-            <div class="p-5">
-              <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Create Account</h1>
-              </div>
-              <form class="user" method="POST">
-                <div class="form-group">
-                    <label for="type">Saving Account's Type: </label>
-                    <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_period">
-                      <option id="Month" value="Month">Month</option>
-                      <option id="Year" value="Year">Year</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="period" name="period" placeholder="Period Of Saving Account">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="moneySending" name="moneySending" placeholder="Money Sending">
-                </div>
-                <div class="form-group">
-                    <label for="type">Saving Account's Type: </label>
-                    <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_type">
-                      <option id="Quarterly" value="Quarterly">Quarterly</option>
-                      <option id="Limited" value="Limited">Limited</option>
-                      <option id="Unlimited" value="Unlimited">Unlimited</option>
-                    </select>
-                </div>
-                <div class="form-group">                                
-                  <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
-                </div>
-              </form>
-            </div>
-          </div>
+<div class="w3ls-section contact">
+    <div class="container"> 
+        <div class="w3ls-title">
+            <h2 class="h3-w3l">Accuracy Information</h2> 
         </div>
-      </div>
+        <div class="contact_wthreerow agileits-w3layouts">
+            <div class="col-md-5 agileits_w3layouts_contact_gridl">
+                <div class="agileits_mail_grid_right_grid">
+                    <h4>upload file</h4>                        
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="customFileBefore">Choose file</label>   
+                            <input type="file" class="custom-file-input" id="customFileBefore">    
+                        </div>                           
+                </div> 
+                <div class="agileits_mail_grid_right_grid">
+                    <h4>upload file</h4>
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="customFileAfter">Choose file</label>
+                        <input type="file" class="custom-file-input" id="customFileAfter">          
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-7 w3l_contact_form">
+                <h4>Saving Account Form</h4> 
+                <form class="user" method="POST">
+                    <div class="form-group">
+                        <label for="type">Saving Account's Type: </label>
+                        <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_period">
+                          <option id="Month" value="Month">Month</option>
+                          <option id="Year" value="Year">Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="period" name="period" placeholder="Period Of Saving Account">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="moneySending" name="moneySending" placeholder="Money Sending">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Saving Account's Type: </label>
+                        <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_type">
+                          <option id="Quarterly" value="Quarterly">Quarterly</option>
+                          <option id="Limited" value="Limited">Limited</option>
+                          <option id="Unlimited" value="Unlimited">Unlimited</option>
+                        </select>
+                    </div>
+                    <div class="form-group">                                
+                      <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
+                    </div>
+                  </form>
+            </div>
+            
+            <div class="clearfix"> </div>
+        </div>
     </div>
+</div>
+<!-- //contact --> 
 
-  </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="admin/vendor/jquery/jquery.min.js"></script>
-  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="admin/js/sb-admin-2.min.js"></script>
-
-</body>
-
-</html>
+<%- include('User_Footer'); -%> 

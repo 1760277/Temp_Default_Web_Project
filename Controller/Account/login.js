@@ -10,10 +10,9 @@ ROUTER.get('/', function getLoginCustomer(req, res){
 });
 
 ROUTER.post('/',ASYNC_HANDLER(async function(req,res){
-    const cusTom=await CUSTOM.findByAccountNumber(req.body.accountNumber);
-    console.log(req.body.accountNumber);
+    const cusTom=await CUSTOM.findByUsername(req.body.userName);
     console.log(cusTom);
-    if(!cusTom || !CUSTOM.verifyPassWord(req.body.password,cusTom.password)){
+    if(!cusTom || !CUSTOM.verifyPassWord(req.body.password,cusTom.passWord)){
         return res.render('Login_Custom');
     }
     req.session.cusTomId = cusTom.id;
@@ -63,7 +62,5 @@ ROUTER.get('/auto-create',ASYNC_HANDLER(async function(req,res){
     
         const customer=await CUSTOMER.createCustom("BB"+(10000+index),"Custom_"+index +"@gamil.com",hashPassword,"BB Custom" + index,"")
     }
-
-
 }))
 module.exports = ROUTER;
