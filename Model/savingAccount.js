@@ -428,6 +428,14 @@ class SavingAccount extends MODEL{
     static async findById(id){
         return SavingAccount.findByPk(id);
     }
+
+    static async findAllSavingAccount(){
+        return SavingAccount.findAll({
+            where: {
+                status: false,
+            }
+        })
+    }
 }
 SavingAccount.init({
     savingAccountNumber:{

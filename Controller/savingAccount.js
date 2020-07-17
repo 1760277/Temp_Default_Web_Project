@@ -21,6 +21,16 @@ ROUTER.get('/', function getRegisterCustomer(req, res){
     }
 });
 
+ROUTER.get('/listSavingAccount', ASYNC_HANDLER(async function (req, res) {
+    const listSavingAccount = await SAVING_ACCOUNT.findAllSavingAccount();
+
+    res.render('Saving_Account_List', {listSavingAccount: listSavingAccount});
+}));
+
+ROUTER.get('/:id/confirm', function (req, res) {
+    
+});
+
 ROUTER.post('/closeSavingAccount', function (req, res) {
     const savingAccount = SAVING_ACCOUNT.findById();
 
