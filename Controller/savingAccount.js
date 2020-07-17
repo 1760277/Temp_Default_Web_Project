@@ -4,11 +4,11 @@ const { body, validationResult } = require('express-validator');
 const CRYPTO = require('crypto');
 var BIGUINT = require('biguint-format');
 
-const STAFF = require('../../Model/staff');
-const CUSTOMER = require('../../Model/custom');
-const SAVING_ACCOUNT = require('../../Model/savingAccount');
-const EMAIL = require('../../Model/email');
-const { quarterlyInterestRate_Limited } = require('../../Model/savingAccount');
+const STAFF = require('../Model/staff');
+const CUSTOMER = require('../Model/custom');
+const SAVING_ACCOUNT = require('../Model/savingAccount');
+const EMAIL = require('../Model/email');
+const { quarterlyInterestRate_Limited } = require('../Model/savingAccount');
 
 const ROUTER = new Router();
 
