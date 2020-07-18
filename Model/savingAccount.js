@@ -412,16 +412,17 @@ class SavingAccount extends MODEL{
         }
     }
 
-    static async InterestRate_Unlimited(moneySending, period){
+    static async InterestRate_Unlimited(){
         return 0.5;
     }
 
-    static async CreateSavingAccount(moneySending, interestRate, closeDate, accountType){
+    static async CreateSavingAccount(moneySending, interestRate, closeDate, accountType, moneyReceive){
         return SavingAccount.create({
             moneySending: moneySending,
             interestRate: interestRate,
             closeDate: closeDate,
             accountType: accountType,
+            moneyReceive: moneyReceive,
         });
     }
 

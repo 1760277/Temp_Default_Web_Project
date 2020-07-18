@@ -79,13 +79,15 @@ ROUTER.post('/',[
                 Month = Month - 12;
                 Year = Year + 1;
             }
+            
+            const moneyReceive = req.body.moneySending * interestRate / 12 * period;
 
             const closeDate = new Date(Year, Month, Day);
 
             const savingAccountNumber = req.currentCustom.accountNumber;
 
-            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber);
-            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.accountType},${savingAccount.moneySending}`);
+            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive);
+            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.moneyReceive},${savingAccount.moneySending}`);
         }
         else {
             const accountType = true;
@@ -98,10 +100,12 @@ ROUTER.post('/',[
             var Month = now.getMonth() + 1;
             var Year = now.getFullYear() + parseInt(req.body.period, 10);
 
+            const moneyReceive = req.body.moneySending * interestRate / 12 * (period * 12);
+
             const closeDate = new Date(Year, Month, Day);
 
-            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber);
-            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.accountType},${savingAccount.moneySending}`);
+            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive);
+            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.moneyReceive},${savingAccount.moneySending}`);
         }
     }
     else if (req.body.selectpicker_type == 'Limited'){
@@ -119,12 +123,14 @@ ROUTER.post('/',[
                 Year = Year + 1;
             }
 
+            const moneyReceive = req.body.moneySending * interestRate / 12 * period;
+
             const closeDate = new Date(Year, Month, Day);
 
             const savingAccountNumber = req.currentCustom.accountNumber;
 
-            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber);
-            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.accountType},${savingAccount.moneySending}`);
+            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive);
+            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.moneyReceive},${savingAccount.moneySending}`);
         }
         else {
             const accountType = true;
@@ -137,16 +143,18 @@ ROUTER.post('/',[
             var Month = now.getMonth() + 1;
             var Year = now.getFullYear() + parseInt(req.body.period, 10);
 
+            const moneyReceive = req.body.moneySending * interestRate / 12 * (period * 12);
+
             const closeDate = new Date(Year, Month, Day);
 
-            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber);
-            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.accountType},${savingAccount.moneySending}`);
+            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive);
+            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.moneyReceive},${savingAccount.moneySending}`);
         }
     }
     else {
         if (req.body.selectpicker_period == 'Month'){
             const accountType = true;
-            const interestRate = SAVING_ACCOUNT.InterestRate_Unlimited(req.body.moneySending, parseInt(req.body.period, 10));
+            const interestRate = SAVING_ACCOUNT.InterestRate_Unlimited();
 
             const now = new Date();
             var Day = now.getDate();
@@ -157,18 +165,18 @@ ROUTER.post('/',[
                 Month = Month - 12;
                 Year = Year + 1;
             }
-
+            const moneyReceive = req.body.moneySending * interestRate / 12 * period;
             const closeDate = new Date(Year, Month, Day);
 
             const savingAccountNumber = req.currentCustom.accountNumber;
 
-            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber);
-            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.accountType},${savingAccount.moneySending}`);
+            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive);
+            await EMAIL.send(req.currentCustom.email, 'Tai Khoan Tiet Kiem',`${savingAccount.moneyReceive},${savingAccount.moneySending}`);
 
         }
         else {
             const accountType = true;
-            const interestRate = SAVING_ACCOUNT.InterUnestRate_Unlimited(req.body.moneySending, parseInt(req.body.period, 10));
+            const interestRate = SAVING_ACCOUNT.InterUnestRate_Unlimited();
 
             const savingAccountNumber = req.currentCustom.accountNumber;
 
@@ -176,11 +184,11 @@ ROUTER.post('/',[
             var Day = now.getDate();
             var Month = now.getMonth() + 1;
             var Year = now.getFullYear() + parseInt(req.body.period, 10);
-
+            const moneyReceive = req.body.moneySending * interestRate / 12 * (period * 12);
             const closeDate = new Date(Year, Month, Day);
 
-            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber);
-            await EMAIL.send(req.currentCustom.email,'Tai Khoan Tiet Kiem',`${savingAccount.accountType},${savingAccount.moneySending}`);
+            const savingAccount = SAVING_ACCOUNT.CreateSavingAccount(req.body.moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive);
+            await EMAIL.send(req.currentCustom.email,'Tai Khoan Tiet Kiem',`${savingAccount.moneyReceive},${savingAccount.moneySending}`);
         }
     }
     res.redirect('/savingAccount');
