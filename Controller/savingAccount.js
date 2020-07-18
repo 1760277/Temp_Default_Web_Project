@@ -13,12 +13,13 @@ const { quarterlyInterestRate_Limited } = require('../Model/savingAccount');
 const ROUTER = new Router();
 
 ROUTER.get('/', function getRegisterCustomer(req, res){
-    if (req.currentCustom != null){
-        res.render('Saving_Account');
+    res.render('Saving_Account');
+    /*if (req.currentCustom != null){
+        
     }
     else {
         res.render('Index');
-    }
+    }*/
 });
 
 ROUTER.get('/listSavingAccount', ASYNC_HANDLER(async function (req, res) {
