@@ -22,23 +22,34 @@ ROUTER.get('/', function getRegisterCustomer(req, res){
     }*/
 });
 
+ROUTER.get('/mySavingAccount', ASYNC_HANDLER(async function(req, res){
+    const savingAccount = await SAVING_ACCOUNT.findAllSavingAccountByCustomNumber(req.currentCustom);
+
+    res.render('My_Saving_Account', {savingAccount : savingAccount});
+}));
+
 ROUTER.get('/listSavingAccount', ASYNC_HANDLER(async function (req, res) {
     const listSavingAccount = await SAVING_ACCOUNT.findAllSavingAccount();
 
     res.render('Saving_Account_List', {listSavingAccount: listSavingAccount});
 }));
 
-ROUTER.get('/:id/confirm', function (req, res) {
-    
-});
-
-ROUTER.post('/closeSavingAccount', function (req, res) {
-    const savingAccount = SAVING_ACCOUNT.findById();
-
-    savingAccount.accountType = false;
+ROUTER.get('/:id/confirm', ASYNC_HANDLER (async function (req, res) {
+    const { id } = req.params;
+    const savingAccount = await SAVING_ACCOUNT.findById(id);
+    savingAccount.status = true;
     savingAccount.save();
-    res.redirect('/closeSavingAccount');
-});
+    res.redirect('/savingAccount/listSavingAccount');
+}));
+
+ROUTER.post('/:id/close', ASYNC_HANDLER(async function (req, res) {
+    const { id } = req.params;
+    const savingAccount = await SAVING_ACCOUNT.findById(id);
+
+    savingAccount.status = false;
+    savingAccount.save();
+    res.redirect('/savingAccount/mySavingAccount');
+}));
 
 ROUTER.post('/',[
     body('period')

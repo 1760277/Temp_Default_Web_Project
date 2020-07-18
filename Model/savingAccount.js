@@ -434,6 +434,15 @@ class SavingAccount extends MODEL{
             where: {
                 status: false,
             }
+        });
+    }
+
+    static async findAllSavingAccountByCustomNumber(customNumber){
+        return SavingAccount.findAll({
+            where: {
+                savingAccountNumber: customNumber,
+                status: true,
+            }
         })
     }
 }
