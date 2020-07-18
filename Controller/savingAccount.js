@@ -9,6 +9,7 @@ const CUSTOMER = require('../Model/custom');
 const SAVING_ACCOUNT = require('../Model/savingAccount');
 const EMAIL = require('../Model/email');
 const { quarterlyInterestRate_Limited } = require('../Model/savingAccount');
+const SavingAccount = require('../Model/savingAccount');
 
 const ROUTER = new Router();
 
@@ -45,6 +46,58 @@ ROUTER.get('/:id/confirm', ASYNC_HANDLER (async function (req, res) {
 ROUTER.post('/:id/close', ASYNC_HANDLER(async function (req, res) {
     const { id } = req.params;
     const savingAccount = await SAVING_ACCOUNT.findById(id);
+
+    if (savingAccount.accountType === true){
+        savingAccount.interestRate = SAVING_ACCOUNT.InterestRate_Unlimited();
+
+        const now = new Date();
+        
+
+        if (now.getFullYear() < savingAccount.closeDate.getFullYear()){
+            const Day = now.getDate();// - savingAccount.openDate.getDate();
+            const Month = (now.getMonth() + 1);// - (savingAccount.openDate.getMonth() + 1);
+            const Year = now.getFullYear();// - savingAccount.openDate.getFullYear();
+
+            var count = 0;
+
+            while (Month != (savingAccount.openDate.getMonth() + 1) || Year != savingAccount.openDate.getFullYear()){
+                if (Month == 1){
+                    Month == 12;
+                    Year = Year - 1;
+                    count = count + 1;
+                }
+                else {
+                    Month = Month - 1;
+                    count = count + 1;
+                }
+            }
+
+            savingAccount.moneyReceive = savingAccount.moneySending * interestRate / 12 * count;
+            savingAccount.status = false;
+            savingAccount.save();
+        }
+        else {
+            if ((now.getMonth() + 1) < (savingAccount.closeDate.getMonth() + 1)){
+                var count = 0;
+                while (Month != (savingAccount.openDate.getMonth() + 1)){
+                    Month = Month - 1;
+                    count = count + 1;
+                }
+    
+                savingAccount.moneyReceive = savingAccount.moneySending * interestRate / 12 * count;
+                savingAccount.status = false;
+                savingAccount.save();
+            }
+            else {
+                if (now.getDate() < savingAccount.closeDate.getDate()){
+                    savingAccount.moneyReceive = savingAccount.moneySending * interestRate / 12 * savingAccount.period;
+
+                    savingAccount.status = false;
+                    savingAccount.save();
+                }
+            }
+        }
+    }
 
     savingAccount.status = false;
     savingAccount.save();
