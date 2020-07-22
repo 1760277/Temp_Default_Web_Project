@@ -25,8 +25,9 @@ app.use('/staff', require('./Controller/Admin/staff'));
 app.get('/logout',require('./Controller/Account/logout'));
 app.use('/admin', require('./Controller/Admin/admin'));
 app.use('/random',require('./Model/radomcustom'));
+app.use('/paymentinbank',require('./Controller/Cutomer/paymentinbank'));
+app.use('/inforaccount',require('./Controller/Cutomer/inforAccount'));
 app.use('/savingAccount', require('./Controller/savingAccount'));
-
 
 app.use(EXPRESS.static('Static'));
 

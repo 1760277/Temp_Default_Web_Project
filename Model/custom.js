@@ -1,4 +1,3 @@
-
 const BCRYPT = require('bcrypt');
 const SEQUELIZE = require('sequelize');
 const DB = require('./db');
@@ -11,12 +10,19 @@ class Custom extends MODEL{
       
     static async findByUsername(userName) {
         return Custom.findOne({
-            where: {
-                userName
+            where:{
+                userName,
             }
-        });
-    };    
-    
+        })
+        };
+
+    static async findByEmail(email){
+        return Custom.findOne({
+            where:{
+                email,
+            }
+        })
+    }
     static async findByAccountNumber(accountNumber){
         return Custom.findOne({
             where: { 
@@ -25,29 +31,29 @@ class Custom extends MODEL{
         });
     };
 
-     static  hashPassWord(password) {
-        return BCRYPT.hashSync(password, 10);
+    static hashPassWord(passWord) {
+        return BCRYPT.hashSync(passWord, 10);
     };
     
-    static  verifyPassWord(password, passwordHash) {
-        return BCRYPT.compareSync(password, passwordHash)
+    static verifyPassWord(passWord, hashPassWord) {
+        return BCRYPT.compareSync(passWord, hashPassWord)
     };
 
     static async getAllCustom(){
         return Custom.findAll();
     };
   
-    static async createCustom(accountNumber,email,password,userName,token){
+    static async createCustom(userName,password,email,token,accountNumber){
         return Custom.create({
-            accountNumber: accountNumber,           
-            email:email,
-            passWord:password,
-            userName:userName,
+            userName:userName,  
+            passWord:password,        
+            email:email,            
             token:token,
+            accountNumber: accountNumber, 
         });
     };
 
-    static async changePassword(id, curentPassword, newPassword){
+    /*static async changePassword(id, curentPassword, newPassword){
         const user = await this.findById(id);
         if(this.verifyPassWord(curentPassword,user.passWord))
         {
@@ -56,7 +62,7 @@ class Custom extends MODEL{
                     passWord: this.hashPassWord(newPassword)
                 },  
                 {
-                    where : { id : id}
+                    where : { id = id}
                 });
             
             return true;
@@ -65,7 +71,7 @@ class Custom extends MODEL{
         {
             return false;
         }
-    };
+    };*/
 
  }
  Custom.init({
@@ -73,7 +79,6 @@ class Custom extends MODEL{
         type: SEQUELIZE.STRING,
         allowNull: false,
         unique: true,
-        primarykey: true
     },    
     passWord: {
         type: SEQUELIZE.STRING,

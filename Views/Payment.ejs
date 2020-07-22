@@ -1,0 +1,41 @@
+<%- include('User_Header',{title: 'Payment In Bank'}); -%>
+
+<div class="p-5">
+    <div class="text-center">
+      <h1 class="h4 text-gray-900 mb-4">Chuyển tiền trong ngân hàng</h1>
+    </div>
+    <form class="user" method="POST" style="width: 600px; margin-left: 277px">
+        <div class="form-group">  
+          <label for="accountNumber">Tài khoản thanh toán</label>
+        <select class="form-control form-control-user" name="accountNumber" id="accountNumber">
+            <option value="<%= paymentAC.accountNumber %>"><%= paymentAC.accountNumber %></option>
+        </select>
+        </div>
+        <div class="form-group">  
+          <label for="availableBalance">Số dư khả dụng</label>
+            <input class="form-control form-control-user" type="text" id="availableBalance" name="availableBalance" value="<%= paymentAC.availableBalance %>" readonly>
+        </div>
+      <div class="form-group">    
+          <label for="accountNumberReceive">Tài khoản nhận</label>              
+          <input type="text" class="form-control form-control-user" id="accountNumberReceive" name="accountNumberReceive" >
+        </div>
+        <div class="form-group">
+          <label for="moneyDeposit">Số tiền gửi</label>  
+          <input type="text" class="form-control form-control-user" id="moneyDeposit" name="moneyDeposit" >
+        </div>
+        <div class="form-group">
+          <label for="contentPayment">Ghi chú</label> 
+          <input type="text" class="form-control form-control-user" id="contentPayment" name="contentPayment" >
+        </div>
+        <div class="form-group" style="width: 300px; margin-left: 148px">                                
+          <input onclick="myFunction()" type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Chuyển tiền">
+        </div>
+    </form>
+  </div>
+  <script>
+    function myFunction() {
+      alert("Chúng tôi đã gửi cho bạn 1 email xác thực vui lòng kiểm tra hộp thư của bạn");
+    }
+  </script>
+
+<%- include('User_Footer'); -%>

@@ -20,17 +20,17 @@
           </tr>
         </tfoot>
         <tbody style="text-align:center">
-          <% if (lst) { %>
-          <% for( let index = 0; index < lst.length; index++ ) { %>
+          <% if (verifyAccount) { %>
+          <% for( let index = 0; index < verifyAccount.length; index++ ) { %>
           <tr>
             <td><%= verifyAccount[index].fullName %></td>
             <td>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
-                Check
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= verifyAccount[index].numberNationID %> ">
+                Details
               </button>
               <!-- Modal -->
-              <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              <div class="modal fade" id=<%= verifyAccount[index]. %> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -42,36 +42,41 @@
                     </div>
                     <div class="modal-body">
                       <div class="col-md-7 w3l_contact_form">
-                        <h4>Accuracy Form</h4> 
-                        <form  method="post">		
+                        <h4>Accuracy Form</h4>
+                        <form method="post">
                           <div class="form-group">
-                            <p  style="text-align: center;" class="form-control form-control-user"  > <%= verifyAccount[index].fullName %></p>
+                            <p style="text-align: center;" class="form-control form-control-user">
+                              <%= verifyAccount[index].fullName %></p>
                           </div>
                           <div class="form-group">
-                            <p type="date" style="text-align: center;" class="form-control form-control-user" > <%= verifyAccount[index].birthDate %> </p>
+                            <p type="date" style="text-align: center;" class="form-control form-control-user">
+                              <%= verifyAccount[index].birthDate %> </p>
                           </div>
                           <div class="form-group">
-                            <p type="text" style="text-align: center;" class="form-control form-control-user" ><%= verifyAccount[index].address %>  </p>
-                          </div>		
+                            <p type="text" style="text-align: center;" class="form-control form-control-user">
+                              <%= verifyAccount[index].address %> </p>
+                          </div>
                           <div class="form-group">
-                            <p type="text" style="text-align: center;" class="form-control form-control-user" ><%= verifyAccount[index].numberNationID %>  </p>
-                          </div>  
+                            <p type="text" style="text-align: center;" class="form-control form-control-user">
+                              <%= verifyAccount[index].numberNationID %> </p>
+                          </div>
                           <div class="form-group">
-                            <p type="date" style="text-align: center;" class="form-control form-control-user" ><%= verifyAccount[index].dateRange %> </p>
-                          </div>   
+                            <p type="date" style="text-align: center;" class="form-control form-control-user">
+                              <%= verifyAccount[index].dateRange %> </p>
+                          </div>
                           <div class="form-group">
-                            <p type="text" style="text-align: center;" class="form-control form-control-user" ><%= verifyAccount[index].addressRange %></p>
+                            <p type="text" style="text-align: center;" class="form-control form-control-user">
+                              <%= verifyAccount[index].addressRange %></p>
                           </div>
                         </form>
-                      </div>                      
+                      </div>
                       <div class="clearfix"> </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Accept</button>
-                      <button type="button" class="btn btn-primary">refuse</button>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Accept</button>                        
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
             </td>
           </tr>
           <% } %>>

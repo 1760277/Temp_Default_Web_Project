@@ -7,6 +7,7 @@ const STAFF = require('../../Model/staff');
 const CUSTOMER = require('../../Model/custom');
 const EMAIL = require('../../Model/email');
 const VERRIFY_ACCOUNT = require('../../Model/verifyAccount');
+const PAYMENTACCOUNT = require('../../Model/paymentAccount');  
 const { hashPassWord } = require('../../Model/staff');
 
 const ROUTER = new Router();
@@ -28,9 +29,6 @@ ROUTER.post('/',[
     body('userName')
         .trim()
         .notEmpty(), 
-    body('fullName')
-        .trim()
-        .notEmpty(), 
     body('password')
         .isLength ({min:6}),
 ], ASYNC_HANDLER( async function(req, res){
@@ -39,15 +37,17 @@ ROUTER.post('/',[
     if(!errors.isEmpty()){
         return res.status(422).render('Register',{errors: errors.array()});
     }
-    const acNum='10000'+BIGUINT(CRYPTO.randomBytes(2), 'dec');
+    const acNum='5078'+BIGUINT(CRYPTO.randomBytes(2), 'dec');
     const hassPass=await CUSTOMER.hashPassWord(req.body.password);
     const toke=CRYPTO.randomBytes(3).toString('hex').toUpperCase();
-    const customer=await CUSTOMER.createCustom(acNum,req.body.userName,req.body.email,hassPass,req.body.fullName,toke)
-    //console.log(customer)
-    await EMAIL.send(customer.email, 'Mã kích hoạt tài khoản',`http://localhost:3000/login/${customer.id}/${customer.token}`);
+    const customer=await CUSTOMER.createCustom(req.body.userName,hassPass,req.body.email,toke,acNum)
+    const verify_Account = await VERRIFY_ACCOUNT.createDefault(customer.id, req.body.fullName)
     const custom=await CUSTOMER.findByEmail(req.body.email);
-    
+    await EMAIL.send(custom.email, 'Mã kích hoạt tài khoản',`http://localhost:3000/login/${custom.id}/${custom.token}`);
+    await PAYMENTACCOUNT.createPaymentAccount(acNum);
+    await EMAIL.send(custom.email,'Cảm ơn quý khách đã sử dụng dịch vụ BeautifullBank',`Số tài khoản:  ${custom.accountNumber}`)
     res.redirect('/');
+    
 }));
 
 ROUTER.get('/staff', function getRegisterStaff(req, res){
@@ -80,7 +80,7 @@ ROUTER.post('/staff', [
     const hashPassword = await STAFF.hashPassWord(req.body.password);
     const accountNumber = BIGUINT(CRYPTO.randomBytes(4), 'dec');
 
-    const staff = await STAFF.createStaff(req.body.email, hashPassword, req.body.userName, req.body.officeBank);
+    const staff = await STAFF.createStaff(req.body.email, hashPassword, req.body.userName,req.body.fullName, req.body.officeBank);
 
     await EMAIL.send(staff.email, 'Tai Khoan Nhan Vien Trong Ngan Hang', `${staff.email}, ${req.body.password}`);
 

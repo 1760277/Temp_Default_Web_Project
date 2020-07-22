@@ -1,4 +1,3 @@
-
 const BCRYPT = require('bcrypt');
 const SEQUELIZE = require('sequelize');
 const CUSTOM = require('./custom')
@@ -8,23 +7,21 @@ const MODEL = SEQUELIZE.Model;
 class PaymentAccount extends MODEL{
 
     static async findbyAccountNumber(accountNumber){
-        return PaymentAccount.findOne(accountNumber);
+        return PaymentAccount.findOne({
+            where:{accountNumber}
+        });
     }
-    static async createPaymentAccount(accountNumber,bankAddress,currentBalance,availableBalance){
+    static async createPaymentAccount(accountNumber){
         return PaymentAccount.create({
             accountNumber:accountNumber,
-            status:true,
-            bankAddress:bankAddress,
-            currentBalance:currentBalance,
-            availableBalance:availableBalance
         })
     }
-    static async updateBalace(currentBalance,availableBalance,accountNumber){
+    static async updateBalace(availableBalance,accountNumber){
         return PaymentAccount.update({
-            currentBalance:currentBalance,
             availableBalance:availableBalance,
-        },{where:{
-            accountNumber:accountNumber
+        },{
+            where:{
+                accountNumber:accountNumber
         }
     })
     }
@@ -47,18 +44,17 @@ class PaymentAccount extends MODEL{
     }, 
     status: {
         type: SEQUELIZE.BOOLEAN,
+        defaultValue: true,
         allowNull: false,
     },  
-    bankAddress: {
-        type: SEQUELIZE.BOOLEAN,
+    brandBank: {
+        type: SEQUELIZE.STRING,
+        defaultValue:'KHTN',
         allowNull: false,
     },     
-    currentBalance: {
-        type: SEQUELIZE.DECIMAL,
-        allowNull: false,
-    },
     availableBalance: {
         type: SEQUELIZE.DECIMAL,
+        defaultValue:0,
         allowNull: false,
     },    
     
