@@ -1,119 +1,143 @@
 const SEQUELIZE = require('sequelize');
 const DB = require('./db');
 const { verifyPassWord } = require('./custom');
+const CUSTOM = require('./custom');
 const MODEL = SEQUELIZE.Model;
 
-class VerifyAccount extends MODEL{
+class VerifyAccount extends MODEL {
 
-    static async createDefault(userID, fullName,address,numberNationID,addressRange ) {
-        
+    static async createDefault(customId, fullName ) {
+
         return VerifyAccount.create(
             {
-                userID: userID,
-                fullName : fullName,
-                address: address,
-                numberNationID:  numberNationID,                
-                addressRange: addressRange,
+                fullName: fullName,
+                customId: customId,
             }
         )
-    }  
-     
-    static async updateAccount(id,fullName, birthDate, address, frontNationID, behindNationID, dateRange, addressRange) {
+    };
+    static async findByCustomId(customId){
+        return VerifyAccount.findOne({
+            where:{
+                customId
+            }
+        })
+    }
+    static async updateAccount(id, fullName, birthDate, address, frontNationID, behindNationID,numberNationID, dateRange, addressRange) {
         return VerifyAccount.update(
             {
                 fullName: fullName,
-                birthDate : birthDate,
+                birthDate: birthDate,
                 address: address,
                 frontNationID: frontNationID,
                 behindNationID: behindNationID,
+                numberNationID: numberNationID,
                 dateRange: dateRange,
                 addressRange: addressRange,
-                status : false,                
-            },{
+                status: false,
+            }, {
 
-                where : {userID: id}
+            where: { customId: id }
+        });
+    };
+
+    static async updateStatus(id) {
+        verifyPassWord.update({
+            status: true
+        },
+            {
+                where: { customId: id }
             });
     };
-    
-    static async updateStatus(id)
-    {
-        verifyPassWord.update({
-            status : true
+
+    static async findInfoByUserId(customId) {
+        return VerifyAccount.findOne({
+            where: customId,
+        })
+    };
+
+    static async findAllVerifyAccount() {
+        return VerifyAccount.findAll();
+    };
+
+    static async updateRequest_False(id) {
+        VerifyAccount.update({
+            requestVerify: false
         },
-        {
-            where : { userID : id}
+            {
+                where: { customId: id }
+            });
+    };
+
+    static async updateRequest_True(id) {
+        VerifyAccount.update({
+            requestVerify: true
+        },
+            {
+                where: { customId: id }
+            });
+    };
+
+    async getRequestDone() {
+        this.requestVerify = fasle;
+        return this.save();
+    };
+    
+    static async findAllRequestNotCheck() {
+        return VerifyAccount.findAll({
+            where: {
+                requestVerify: true,
+            }
         });
     };
 
-    static async updateRequest(id)
-    {
-        verifyPassWord.update({
-            requestVerify : true
-        },
-        {
-            where : { userID : id}
-        });
-    }
-    
-    static async findInfoByUserId(userID){
-        return VerifyAccount.findOne({
-            where: userID,
-        })
-    }
-    static async findAllVerifyAccount(){
-        return VerifyAccount.findAll();
-    }
-  }
-  VerifyAccount.init({   
-    userID:{
+}
+VerifyAccount.init({
+    fullName: {
         type: SEQUELIZE.STRING,
         allowNull: false,
-    },       
-    fullName:{
-        type: SEQUELIZE.STRING,
-        allowNull: false,
-    },       
-    birthDate:{
-        type: SEQUELIZE.DATEONLY,
-        allowNull: true,
-    },       
-    address:{
-        type: SEQUELIZE.STRING,
-        allowNull: true,
-    },  
-    frontNationID:{
-        type: SEQUELIZE.BLOB,
-        allowNull: true,
-    },          
-    behindNationID:{
-        type: SEQUELIZE.BLOB,
-        allowNull: true,
     },
-    numberNationID:{
-        type: SEQUELIZE.STRING,
-        allowNull: true,
-    },
-    dateRange:{
+    birthDate: {
         type: SEQUELIZE.DATEONLY,
         allowNull: true,
     },
-    addressRange:{
+    address: {
         type: SEQUELIZE.STRING,
         allowNull: true,
-    },   
-    status:{
+    },
+    frontNationID: {
+        type: SEQUELIZE.BLOB,
+        allowNull: true,
+    },
+    behindNationID: {
+        type: SEQUELIZE.BLOB,
+        allowNull: true,
+    },
+    numberNationID: {
+        type: SEQUELIZE.STRING,
+        allowNull: true,
+    },
+    dateRange: {
+        type: SEQUELIZE.DATEONLY,
+        allowNull: true,
+    },
+    addressRange: {
+        type: SEQUELIZE.STRING,
+        allowNull: true,
+    },
+    status: {
         type: SEQUELIZE.BOOLEAN,
         defaultValue: false,
         allowNull: false,
     },
-    requestVerify:{
+    requestVerify: {
         type: SEQUELIZE.BOOLEAN,
         defaultValue: false,
         allowNull: true,
     }
-},{
-        sequelize: DB,
-        modelName: 'verifyAccount',
- });
-// PaymentAccount.belongsTo(CUSTOM)
+}, {
+    sequelize: DB,
+    modelName: 'verifyAccount',
+});
+CUSTOM.hasMany(VerifyAccount);
+VerifyAccount.belongsTo(CUSTOM)
 module.exports = VerifyAccount;

@@ -50,16 +50,16 @@
                   </div>
                   <form class="user" method="POST">
                     <div class="form-group">
-                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="idStaff" name="idStaff"  placeholder="0" lable = "id: " value= <%= staff.id  %>  readonly="readonly" >
+                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="idStaff" name="idStaff"  placeholder="0" lable = "id: " value= "<%= staff.id  %>"  readonly="readonly" >
                     </div>
                     <div class="form-group">
-                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="userName" name="userName"  placeholder="user Name" value= <%= staff.userName %> >
+                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="userName" name="userName"  placeholder="user Name" value= "<%= staff.userName %>" >
                     </div>  
                     <div class="form-group">
-                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="fullName" name="fullName"  placeholder="full Name" value= <%= staff.fullName %> >
+                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="fullName" name="fullName"  placeholder="full Name" value= "<%= staff.fullName %>" >
                     </div>                   
                     <div class="form-group">
-                      <input type="email" style="text-align: center;" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="input an email" value= <%= staff.email  %> >
+                      <input type="email" style="text-align: center;" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="input an email" value= "<%= staff.email  %>" >
                     </div>                             
                     <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Edit Profile">

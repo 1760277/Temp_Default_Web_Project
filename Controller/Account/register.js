@@ -7,9 +7,12 @@ const STAFF = require('../../Model/staff');
 const CUSTOMER = require('../../Model/custom');
 const EMAIL = require('../../Model/email');
 const VERRIFY_ACCOUNT = require('../../Model/verifyAccount');
+const PAYMENTACCOUNT = require('../../Model/paymentAccount');  
 const { hashPassWord } = require('../../Model/staff');
 
 const ROUTER = new Router();
+
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 ROUTER.get('/', function getRegisterCustomer(req, res){
     res.render('Register')
@@ -28,9 +31,6 @@ ROUTER.post('/',[
     body('userName')
         .trim()
         .notEmpty(), 
-    body('fullName')
-        .trim()
-        .notEmpty(), 
     body('password')
         .isLength ({min:6}),
 ], ASYNC_HANDLER( async function(req, res){
@@ -39,15 +39,18 @@ ROUTER.post('/',[
     if(!errors.isEmpty()){
         return res.status(422).render('Register',{errors: errors.array()});
     }
-    const acNum='10000'+BIGUINT(CRYPTO.randomBytes(2), 'dec');
+    const acNum='5078'+BIGUINT(CRYPTO.randomBytes(2), 'dec');
     const hassPass=await CUSTOMER.hashPassWord(req.body.password);
     const toke=CRYPTO.randomBytes(3).toString('hex').toUpperCase();
-    const customer=await CUSTOMER.createCustom(acNum,req.body.userName,req.body.email,hassPass,req.body.fullName,toke)
-    //console.log(customer)
-    await EMAIL.send(customer.email, 'Mã kích hoạt tài khoản',`http://localhost:3000/login/${customer.id}/${customer.token}`);
+    const customer=await CUSTOMER.createCustom(req.body.userName,hassPass,req.body.email,toke,acNum)
+    const verify_Account = await VERRIFY_ACCOUNT.createDefault(customer.id, req.body.fullName)
+
+    await EMAIL.send(customer.email, 'Mã kích hoạt tài khoản',`${BASE_URL}/login/${customer.id}/${customer.token}`);
     const custom=await CUSTOMER.findByEmail(req.body.email);
-    
+    await PAYMENTACCOUNT.createPaymentAccount(acNum);
+    await EMAIL.send(customer.email,'Cảm ơn quý khách đã sử dụng dịch vụ BeautifullBank',`Số tài khoản:  ${customer.accountNumber}`)
     res.redirect('/');
+    
 }));
 
 ROUTER.get('/staff', function getRegisterStaff(req, res){
@@ -80,26 +83,17 @@ ROUTER.post('/staff', [
     const hashPassword = await STAFF.hashPassWord(req.body.password);
     const accountNumber = BIGUINT(CRYPTO.randomBytes(4), 'dec');
 
-    const staff = await STAFF.createStaff(req.body.email, hashPassword, req.body.userName, req.body.officeBank);
+    const staff = await STAFF.createStaff(req.body.email, hashPassword, req.body.userName,req.body.fullName, req.body.officeBank);
 
     await EMAIL.send(staff.email, 'Tai Khoan Nhan Vien Trong Ngan Hang', `${staff.email}, ${req.body.password}`);
 
-    res.redirect('/admin');
+    res.redirect('/login/staff');
 }));
 
 
 
 ROUTER.get('/auto-create',ASYNC_HANDLER(async function(req,res){
-    for (var index = 0; index < 100; index++) {
-        const hashPassword = await STAFF.hashPassWord('1');
-        
-        const staff = await STAFF.createStaff("staff_"+index+"@gmail.com", hashPassword, "user_Staff_" + index,"BB_staff_" + index, "0");    
-        
-        const customer=await CUSTOMER.createCustom("BB"+(10000+index),"Custom_"+index +"@gmail.com",hashPassword,"user_"+ index,"");
-        // const statusVerify = await VERRIFY_ACCOUNT.updateStatus(false);
     
-        const verify_Account = await VERRIFY_ACCOUNT.createDefault(customer.id,"BB"+(10000+index), "address_"+index, "numberID_" + index , "addressRange_"+index);
-    }
 
 
 }))

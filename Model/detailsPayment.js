@@ -1,5 +1,7 @@
 const SEQUELIZE = require('sequelize');
 const DB = require('./db');
+const PAYMENT = require('./payment');
+const STAFF = require('./staff');
 const MODEL = SEQUELIZE.Model;
 
 class DetailsPayment extends MODEL{
@@ -7,26 +9,30 @@ class DetailsPayment extends MODEL{
     static async findAllbyDatePayment(datePayment){
         return  DetailsPayment.findAll(datePayment);
     }
-    static async createDetalsPayment(datePayment,codePayment,availableBalance,moneyDeposit,contentPayment,status){
+    static async createDetalsPayment(codePayment,availableBalance,moneyDeposit,contentPayment,paymentId){
         return DetailsPayment.create({
-         datePayment:datePayment,
          codePayment:codePayment,
          availableBalance:availableBalance,
          moneyDeposit:moneyDeposit,
          contentPayment:contentPayment,
-         status:status
+         paymentId: paymentId,
         });
     }
     static async finallDetailsPayment(){
         return DetailsPayment.findAll();
     }
-    
+    static async updatedetailsPyament(paymentId,staffId){
+        return DetailsPayment.update({
+            status: true,
+            staffId:staffId,
+        },{
+            where:{
+                paymentId:paymentId,
+            }
+        })
+    }
   }
-  DetailsPayment.init({   
-    datePayment:{
-        type: SEQUELIZE.DATE,
-        allowNull: false,
-    },       
+  DetailsPayment.init({          
     codePayment:{
         type: SEQUELIZE.STRING,
         allowNull: false,
@@ -45,11 +51,16 @@ class DetailsPayment extends MODEL{
     },
     status:{
         type: SEQUELIZE.STRING,
+        defaultValue:false,
         allowNull: false,
     },
 },{
         sequelize: DB,
         modelName: 'detailsPayment',
  });
-// PaymentAccount.belongsTo(CUSTOM)
+PAYMENT.hasMany(DetailsPayment);
+DetailsPayment.belongsTo(PAYMENT)
+STAFF.hasMany(DetailsPayment);
+DetailsPayment.belongsTo(STAFF);
+
 module.exports = DetailsPayment;

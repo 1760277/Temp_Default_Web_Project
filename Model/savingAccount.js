@@ -416,13 +416,15 @@ class SavingAccount extends MODEL{
         return 0.5;
     }
 
-    static async CreateSavingAccount(moneySending, interestRate, closeDate, accountType, moneyReceive){
+    static async CreateSavingAccount(moneySending, interestRate, closeDate, accountType, savingAccountNumber, moneyReceive){
         return SavingAccount.create({
+            status: false,
             moneySending: moneySending,
             interestRate: interestRate,
             closeDate: closeDate,
             accountType: accountType,
             moneyReceive: moneyReceive,
+            savingAccountNumber: savingAccountNumber,
         });
     }
 
@@ -431,11 +433,7 @@ class SavingAccount extends MODEL{
     }
 
     static async findAllSavingAccount(){
-        return SavingAccount.findAll({
-            where: {
-                status: false,
-            }
-        });
+        return SavingAccount.findAll();
     }
 
     static async findAllSavingAccountByCustomNumber(customNumber){
@@ -451,7 +449,6 @@ SavingAccount.init({
     savingAccountNumber:{
         type: SEQUELIZE.STRING,
         allowNull: false,
-        unique: true,
     },
     status: {
         type: SEQUELIZE.BOOLEAN,

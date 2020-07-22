@@ -3,11 +3,11 @@
 <head>
 <title><%= title %></title>
 <style>
-.center {
-	margin: auto;
-	width: 60%;
-	padding: 10px;
-}
+	.center {
+		margin: auto;
+		width: 60%;
+		padding: 10px;
+	}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,11 +20,15 @@
 <link href="/user/css/font-awesome.css" rel="stylesheet">   <!-- font-awesome icons --> 
 <!-- //Custom Theme files -->  
 <!-- js --> 
-	<script src="user/js/jquery-2.2.3.min.js"></script>
+	<script src="/user/js/jquery-2.2.3.min.js"></script>
 <!-- web-fonts -->
 <link href="//fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <!-- //web-fonts --> 
 </head>
 <body> 
@@ -42,16 +46,30 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
-							<h1><a href="index.html"><img src="user/images/logo.png" alt="logo"width="300" height="150"/></a></h1> 
+							<h1><a href="index.html"><img src="/user/images/logo.png" alt="logo"width="300" height="150"/></a></h1> 
 						 </li>
 						<li><a href="/" class="active">Home</a></li>
-						<li><a href="about.html" class="scroll">Payment</a></li>    
-						<li><a href="services.html" class="scroll">Saving</a></li>    
+						<li>
+							<a href="#" data-toggle="dropdown">Payment<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/payment">Payment In Bank</a></li>
+								<li><a href="/paymentoutbank">Payment Out Bank</a></li>
+								<li><a href="/payment/history">History Payment</a></li>
+							</ul>
+						</li>    
+						<li>
+							<a data-toggle="dropdown">Saving<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/savingAccount">Saving Account</a></li>
+								<li><a href="/savingAccount/mySavingAccount">My Saving Account</a></li>
+							</ul>
+						</li>   
 						<li><a href="gallery.html" class="scroll">History Deal</a></li>
 						<% if (currentCustom) { %>
 							<li><a href="#" data-toggle="dropdown" ><%= currentCustom.userName %><span class="caret"> </span></a>
 								<ul class="dropdown-menu">									
 									<li><a href="/custom/profile">Profile</a></li>
+									<li><a href="/inforaccount">InforAccount Payment</a></li>
 									<li><a href="/accuracy">Verify Account</a></li>
 									<li><a href="/logout">Log out</a></li>
 								</ul>

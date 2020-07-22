@@ -16,7 +16,8 @@ ROUTER.get('/accuracy', ASYNC_HANDLER(async function getAccuracyInfo(req, res){
                                                         
                  
 ROUTER.post('/accuracy', ASYNC_HANDLER(async function postVerifyAccount(req, res){    
-    const CUSTOM_VERRIFY_ACCOUNT = await VERRIFY_ACCOUNT.updateAccount(req.session.cusTomId , req.body.fullName, req.body.birthDate,req.body.address,null,null,req.body.dateRange,req.body.addressRange);
+    const verify = await VERRIFY_ACCOUNT.updateAccount(req.session.cusTomId, req.body.fullName,req.body.birthDate, req.body.address,req.body.frontNationID, req.body.behindNationID  ,req.body.numberNationID, req.body.dateRange, req.body.addressRange);
+    const update = await VERRIFY_ACCOUNT.updateRequest_True(req.session.cusTomId);
     res.redirect('/accuracy');
 }));
 module.exports = ROUTER;

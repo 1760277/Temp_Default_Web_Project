@@ -1,5 +1,5 @@
 <%- include('User_Header', {title: 'My Saving Account'}); -%>
-<div class="w3ls-section contact">
+<!-- <div class="w3ls-section contact">
   <div class="container"> 
     <div class="w3ls-title">
       <h2 class="h3-w3l">Saving Account</h2> 
@@ -17,6 +17,54 @@
       </div>
     </div>
     <div class="clearfix"></div>
+  </div>
+</div> -->
+<div class="text-center">
+  <h1 class="h4 text-gray-900 mb-4">My Saving Account</h1>
+</div>
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Account Number</th>
+          <th>Status</th>
+          <th>Money Sending</th>
+          <th>InterestRate</th>
+          <th>Create At</th>
+          <th>Close Date</th>
+          <th>Close Account</th>             
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Account Number</th>
+          <th>Status</th>
+          <th>Money Sending</th>
+          <th>InterestRate</th>
+          <th>Create At</th>
+          <th>Close Date</th>
+          <th>Close Account</th>                     
+        </tr>
+      </tfoot>
+      <tbody>
+        <% if (savingAccount) { %>
+         <% for( let index = 0; index < savingAccount.length; index++ ) { %>
+          <tr>
+            <td><%= savingAccount[index].savingAccountNumber %></td>
+            <td><%= savingAccount[index].status %></td>
+            <td><%= savingAccount[index].moneySending %> </td>
+            <td><%= savingAccount[index].interestRate %></td>
+            <td><%= savingAccount[index].openDate  %></td>
+            <td><%= savingAccount[index].closeDate  %></td>
+            <td>
+              <a class="btn btn-success" href="/savingAccount/<%= savingAccount[index].id %>/close" role="button">Close Account</a>
+            </td>                       
+          </tr>
+         <% } %>>
+        <% } %>                   
+      </tbody>
+    </table>
   </div>
 </div>
 <!-- //contact --> 

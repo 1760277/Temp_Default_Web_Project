@@ -14,7 +14,6 @@
             <th>InterestRate</th>
             <th>Create At</th>
             <th>Close Date</th>
-            <th>Accept Account</th>
           </tr>
         </thead>
         <tfoot>
@@ -24,24 +23,20 @@
             <th>Money Sending</th>
             <th>InterestRate</th>
             <th>Create At</th>
-            <th>Close Date</th>
-            <th>Accept Account</th>                     
+            <th>Close Date</th>                     
           </tr>
         </tfoot>
         <tbody>
           <% if (listSavingAccount) { %>
            <% for( let index = 0; index < listSavingAccount.length; index++ ) { %>
-            <% if (listSavingAccount[index].status == false) { %>
+            <% if (listSavingAccount[index].status == true) { %>
             <tr>
               <td><%= listSavingAccount[index].savingAccountNumber %></td>
               <td><%= listSavingAccount[index].status %></td>
               <td><%= listSavingAccount[index].moneySending %> </td>
               <td><%= listSavingAccount[index].interestRate %></td>
               <td><%= listSavingAccount[index].openDate  %></td>
-              <td><%= listSavingAccount[index].closeDate  %></td>
-              <td>
-                <a class="btn btn-success" href="/admin/<%= staffid %>/<%= listSavingAccount[index].id %>/confirm" role="button">Confirm</a>
-              </td>                         
+              <td><%= listSavingAccount[index].closeDate  %></td>                       
             </tr>
             <% } %>
            <% } %>
