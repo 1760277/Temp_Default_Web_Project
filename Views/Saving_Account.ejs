@@ -1,0 +1,42 @@
+<%- include('User_Header', {title: 'Saving Account'}); -%>
+<div class="w3ls-section contact">
+  <div class="container"> 
+    <div class="w3ls-title">
+      <h2 class="h3-w3l">Saving Account</h2> 
+    </div>
+    <div class="contact_wthreerow agileits-w3layouts">
+      <div class="center">
+        <h4>Saving Account Form</h4> 
+        <form class="user" method="POST">
+          <div class="form-group">
+              <label for="type">Period's Type: </label>
+              <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_period">
+                <option id="Month" value="Month">Month</option>
+                <option id="Year" value="Year">Year</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="period" name="period" placeholder="Period Of Saving Account">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="moneySending" name="moneySending" placeholder="Money Sending">
+          </div>
+          <div class="form-group">
+              <label for="type">Saving Account's Type: </label>
+              <select id="type" class="selectpicker" data-style="btn-info" name="selectpicker_type">
+                <option id="Quarterly" value="Quarterly">Quarterly</option>
+                <option id="Limited" value="Limited">Limited</option>
+                <option id="Unlimited" value="Unlimited">Unlimited</option>
+              </select>
+          </div>
+          <div class="form-group">                                
+            <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!-- //contact --> 
+<%- include('User_Footer'); -%> 
