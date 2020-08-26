@@ -3,6 +3,18 @@
 <div class="p-5">
     <div class="text-center">
       <h1 class="h4 text-gray-900 mb-4">Chuyển tiền trong ngân hàng</h1>
+      <% if(errors) { %>
+        <p class="text-danger" role="alert">
+              <% errors.forEach(err => { %>
+                <%= err.msg %> <br>
+              <% }); %>  
+          </p>
+      <% } %> 
+      <% if(messeger) { %>
+        <p class="text-danger" role="alert">
+            <%= messeger %> <br>
+          </p>
+      <% } %> 
     </div>
     <form class="user" method="POST" style="width: 600px; margin-left: 277px">
         <div class="form-group">  

@@ -1,92 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<title><%= title %></title>
-<style>
-	.center {
-		margin: auto;
-		width: 60%;
-		padding: 10px;
-	}
-</style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="E-Banking Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<title><%= title %></title>
+	<style>
+		.center {
+			margin: auto;
+			width: 60%;
+			padding: 10px;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="E-Banking Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Custom Theme files -->
-<link href="/user/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="/user/css/style.css" type="text/css" rel="stylesheet" media="all">
-<link href="/user/css/font-awesome.css" rel="stylesheet">   <!-- font-awesome icons --> 
-<!-- //Custom Theme files -->  
-<!-- js --> 
+	<script
+		type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Custom Theme files -->
+	<link href="/user/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+	<link href="/user/css/style.css" type="text/css" rel="stylesheet" media="all">
+	<link href="/user/css/font-awesome.css" rel="stylesheet"> <!-- font-awesome icons -->
+	<!-- //Custom Theme files -->
+	<!-- js -->
 	<script src="/user/js/jquery-2.2.3.min.js"></script>
-<!-- web-fonts -->
-<link href="//fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="sweetalert2.all.min.js"></script>
-<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<!-- //web-fonts --> 
+	<!-- web-fonts -->
+	<link href="//fonts.googleapis.com/css?family=Secular+One" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+		rel="stylesheet">
+	<link
+		href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<!-- //web-fonts -->
 </head>
-<body> 
+
+<body>
 	<!-- banner -->
 	<div class="banner">
-		<div class="header-nav"><!-- header-three --> 	
+		<div class="header-nav">
+			<!-- header-three -->
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
 						<span class="sr-only">Toggle navigation</span>
-						Menu 
-					</button> 
+						Menu
+					</button>
 				</div>
 				<!-- top-nav -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li>
-							<h1><a href="index.html"><img src="/user/images/logo.png" alt="logo"width="300" height="150"/></a></h1> 
-						 </li>
+							<h1><a href="/"><img src="/user/images/logo.png" alt="logo" width="300" height="150"></a>
+							</h1>
+						</li>
+						<% if (currentCustom ) { %>
 						<li><a href="/" class="active">Home</a></li>
 						<li>
-							<a href="#" data-toggle="dropdown">Payment<span class="caret"></span></a>
+							<a data-toggle="dropdown">Payment<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="/payment">Payment In Bank</a></li>
-								<li><a href="/paymentoutbank">Payment Out Bank</a></li>
+								<li><a href="/payment">Payment In Bank</a></li>							
 								<li><a href="/payment/history">History Payment</a></li>
 							</ul>
-						</li>    
+						</li>
 						<li>
 							<a data-toggle="dropdown">Saving<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/savingAccount">Saving Account</a></li>
 								<li><a href="/savingAccount/mySavingAccount">My Saving Account</a></li>
 							</ul>
-						</li>   
-						<li><a href="gallery.html" class="scroll">History Deal</a></li>
-						<% if (currentCustom) { %>
-							<li><a href="#" data-toggle="dropdown" ><%= currentCustom.userName %><span class="caret"> </span></a>
-								<ul class="dropdown-menu">									
-									<li><a href="/custom/profile">Profile</a></li>
-									<li><a href="/inforaccount">InforAccount Payment</a></li>
-									<li><a href="/accuracy">Verify Account</a></li>
-									<li><a href="/logout">Log out</a></li>
-								</ul>
-							</li>
+						</li>
+						<li><a href="/" class="scroll">History Deal</a></li>
+						
+						<li><a href="#" data-toggle="dropdown"><%= currentCustom.userName %><span class="caret">
+								</span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/custom/profile">Profile</a></li>
+								<li><a href="/inforaccount">InforAccount Payment</a></li>
+								<li><a href="custom/profile/accuracy">Verify Account</a></li>
+								<li><a href="/logout">Log out</a></li>
+							</ul>
+						</li>
 						<% } else {%>
-							<li><a href="#" data-toggle="dropdown">Login<span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="/login">Login By Custom</a></li>
-									<li><a href="/login/staff">Login By Staff</a></li>
-								</ul>
-							</li>	
-							<li><a href="/register" class="scroll">Register</a></li>
+						<li><a href="#" data-toggle="dropdown">Login<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/login">Login By Custom</a></li>
+								<li><a href="/login/staff">Login By Staff</a></li>
+							</ul>
+						</li>
+						<li><a href="/register" class="scroll">Register</a></li>
 						<% } %>
-					</ul>  
-					<div class="clearfix"> </div>	
+					</ul>
+					<div class="clearfix"> </div>
 				</div>
-			</nav>    
+			</nav>
 		</div>
-<div  class ="container">
-
+		<div class="container">

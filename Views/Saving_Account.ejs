@@ -6,7 +6,14 @@
     </div>
     <div class="contact_wthreerow agileits-w3layouts">
       <div class="center">
-        <h4>Saving Account Form</h4> 
+        <h4>Saving Account Form</h4>
+        <% if(errors) { %>
+          <p class="text-danger" role="alert">
+            <% errors.forEach(err => { %>
+              <%= err.msg %> <br>
+            <% }); %>
+          </p>
+        <% } %>
         <form class="user" method="POST">
           <div class="form-group">
               <label for="type">Period's Type: </label>

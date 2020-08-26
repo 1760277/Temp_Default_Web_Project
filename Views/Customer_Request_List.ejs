@@ -1,4 +1,18 @@
 <%- include('Admin_Header', {title: 'History Create User'}); -%>
+<style>
+  .modal-content-1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 161%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid rgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+  }
+</style>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
@@ -26,14 +40,15 @@
             <td><%= verifyAccount[index].fullName %></td>
             <td>
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%="ID" + verifyAccount[index].numberNationID %> ">
+              <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#<%="ID" + verifyAccount[index].numberNationID %> ">
                 Details
               </button>
               <!-- Modal -->
-              <div class="modal fade" id=<%= "ID"+verifyAccount[index].numberNationID %> tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+              <div class="modal fade" id=<%= "ID"+verifyAccount[index].numberNationID %> tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+                  <div class="modal-content" style="width:161%">
                     <div class="modal-header">
                       <h5 class="modal-title" id="exampleModalLabel"></h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -41,38 +56,65 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <div class="col-md-7 w3l_contact_form">
-                        <h4>Accuracy Form</h4>
-                        <form method="post">
-                          <div class="form-group">
-                            <p style="text-align: center;" class="form-control form-control-user">
-                              <%= verifyAccount[index].fullName %></p>
-                          </div>
-                          <div class="form-group">
-                            <p type="date" style="text-align: center;" class="form-control form-control-user">
-                              <%= verifyAccount[index].birthDate %> </p>
-                          </div>
-                          <div class="form-group">
-                            <p type="text" style="text-align: center;" class="form-control form-control-user">
-                              <%= verifyAccount[index].address %> </p>
-                          </div>
-                          <div class="form-group">
-                            <p type="text" style="text-align: center;" class="form-control form-control-user">
-                              <%= verifyAccount[index].numberNationID %> </p>
-                          </div>
-                          <div class="form-group">
-                            <p type="date" style="text-align: center;" class="form-control form-control-user">
-                              <%= verifyAccount[index].dateRange %> </p>
-                          </div>
-                          <div class="form-group">
-                            <p type="text" style="text-align: center;" class="form-control form-control-user">
-                              <%= verifyAccount[index].addressRange %></p>
-                          </div>
-                        </form>
+                      <div class="row">
+                        <div class="col-md-6 w3l_contact_form">
+                          <h4 style="padding-bottom: 20px;">Accuracy Form</h4>
+                          <form method="post">
+                            <div class="form-group">
+                              <p style="text-align: center;" class="form-control form-control-user">
+                                <%= verifyAccount[index].fullName %></p>
+                            </div>
+                            <div class="form-group">
+                              <p type="date" style="text-align: center;" class="form-control form-control-user">
+                                <%= verifyAccount[index].birthDate %> </p>
+                            </div>
+                            <div class="form-group">
+                              <p type="text" style="text-align: center;" class="form-control form-control-user">
+                                <%= verifyAccount[index].address %> </p>
+                            </div>
+                            <div class="form-group">
+                              <p type="text" style="text-align: center;" class="form-control form-control-user">
+                                <%= verifyAccount[index].numberNationID %> </p>
+                            </div>
+                            <div class="form-group">
+                              <p type="date" style="text-align: center;" class="form-control form-control-user">
+                                <%= verifyAccount[index].dateRange %> </p>
+                            </div>
+                            <div class="form-group">
+                              <p type="text" style="text-align: center;" class="form-control form-control-user">
+                                <%= verifyAccount[index].addressRange %></p>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="col-md-6 w3l_contact_form; right">
+                          <div class="row" id="Image1">
+                          
+                           <% img.forEach(item=>{%>                            
+                                <% if(item.customId === verifyAccount[index].customId){%> 
+                                  <img src="/uploads/<%= item.name %> " alt="image1" 
+                                  style= "width: 350px;
+                                          height: 200px;                          
+                                          margin-bottom: 5px;
+                                          margin-top: 35px;">
+                                </div>
+                                  <%} %> 
+                              <%}) %> 
+                             
+                           
+                          <!-- <div class="row" id="Image2">
+                            <img src="/uploads/ImageNumberID1-1597747640478.PNG " alt="image2" 
+                            style= "width: 350px;
+                                    height: 200px;                          
+                                    margin-bottom: 5px;
+                                    margin-top: 35px;">
+                          </div> -->
+                        </div>
+                       
                       </div>
                       <div class="clearfix"> </div>
                       <div class="modal-footer">
-                        <a  class="btn btn-primary" href="/admin/<%= verifyAccount[index].customId %>/requestVerify" role="button">Accept</a>                       
+                        <a class="btn btn-primary" href="/admin/<%= verifyAccount[index].customId %>/requestVerify"
+                          role="button" >Accept</a>
                       </div>
                     </div>
                   </div>

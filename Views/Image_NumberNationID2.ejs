@@ -1,0 +1,48 @@
+<%- include('User_Header', {title: 'Image_NumberNationID2'}); -%>
+
+
+<div class="w3ls-section contact">
+    <div class="container">
+        <div class="w3ls-title">
+            <a id="linkOne" href="/custom/profile/accuracy">
+                <h1 class="text-center" style="padding-top: 50px;">Accuracy Form</h1>
+            </a>
+
+        </div>
+        <div class="contact_wthreerow agileits-w3layouts">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="img-profile">
+                       
+                                <img src="/uploads/<%= img!=null ? img.name : img %>" alt="ImageNumberID2"
+                                class="img-profile" style="height: 785px; width: 485px; ">
+                           
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-md-5 w3l_contact_form">
+                    <h4 style="padding-bottom: 17px; text-align: center;">Behind of Image NumberNationID</h4>
+                    <form method="post" enctype="multipart/form-data" >
+                        <div class="form-group">
+                            <label class="custom-file-label mb-3" style="padding-bottom: 17px; "
+                                for="ImageNumberID2"> Behind of Image NumberNationID</label>
+                            <input type="file" name="ImageNumberID2" id="ImageNumberID2"
+                                class="custom-file-input">
+                        </div>
+
+                        <div class="col-sm-12 text-center" style="padding-bottom:100px;">
+                            <input class="text-center ;btn btn-primary btn-user btn-block" type="submit" value="Submit">
+                        </div>
+                    </form>
+                    <div class="clearfix"> </div>
+                    </script>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- //contact -->
+</div>
+
+<%- include('User_Footer'); -%>

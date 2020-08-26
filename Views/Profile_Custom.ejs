@@ -16,10 +16,10 @@
   <title>Profile Custom</title>
 
   <!-- Custom fonts for this template-->
-  <link href="/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/account/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template-->
-  <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="/account/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-primary">
   <div class="container">
@@ -34,7 +34,7 @@
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block img-profile">
                 <div class ="img-profile" >
-                  <img src="/user/images/coolgirl.png" alt="profile" class ="img-profile" style="height: 785px; width: 485px; " >
+                  <img src="/uploads/<%= img!=null ? img.name : img %> "    alt="profile" class ="img-profile" style="height: 785px; width: 485px; " >
                 </div>                
               </div>
               <div class="col-lg-6">               
@@ -45,11 +45,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Information custom</h1>
                   </div>
-                  <form class="user" method="POST">
+                  <form class="user" method="POST" >                    
+                    
                     <div class="form-group">
-                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="accountNumber" name="accountNumber"  placeholder="233562451" value=<%= custom.accountNumber %> readonly= "readonly" >
+                      <input type="text" style="text-align: center;" class="form-control form-control-user" id="accountNaccountumber" name="accountNumber"  placeholder="233562451" value=<%= custom.accountNumber %> readonly= "readonly" >
                     </div>   
-                     
+                    
                     <div class="form-group">
                       <input type="text" style="text-align: center;" class="form-control form-control-user" id="userName" name="userName"  placeholder="user Name" value=<%= custom.userName %> readonly= "readonly" >
                     </div>                                 
@@ -58,13 +59,20 @@
                     </div>   
                     <div class="form-group">
                       <input type="text" style="text-align: center;" class="form-control form-control-user" id="fullName" name="fullName"  placeholder="full name" value="<%= verifyAccount.fullName %>" >
+                    </div>                   
+                    <div class="form-group">
+                      <a class="btn btn-secondary btn-user btn-block" href="/custom/profile/password" role="button">Change Password</a>
+                    </div> 
+                    <div class="form-group">
+                      <a class="btn btn-secondary btn-user btn-block" href="/custom/profile/avartar" role="button">Update profile</a>
                     </div>  
                     <div class="form-group">
-                      <input type="date" style="text-align: center;" class="form-control form-control-user" id="birthDate" name="birthDate" placeholder="00/00/0000"  value="<%= verifyAccount.birthDate %>" >
-                    </div>                       
+                      <a class="btn btn-secondary btn-user btn-block" href="/custom/profile/accuracy" role="button">Accuracy Information</a>
+                    </div>   
                     <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Edit Profile">
                     </div>
+                    
                   </form>
                   <hr>                  
                 </div>
@@ -77,14 +85,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/account/vendor/jquery/jquery.min.js"></script>
+  <script src="/account/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/account/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="/admin/js/sb-admin-2.min.js"></script>
+  <script src="/account/js/sb-admin-2.min.js"></script>
 
 </body>
 

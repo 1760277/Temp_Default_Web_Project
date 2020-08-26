@@ -37,7 +37,7 @@
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block img-profile">
                 <div class ="img-profile" >
-                  <img src="/user/images/girlcute.png" alt="profile" class ="img-profile" style="height: 785px; width: 485px; " >
+                  <img src="/uploads/<%= img!=null ? img.name : img %>" alt="profile" class ="img-profile" style="height: 785px; width: 485px; " >
                 </div>                
               </div>
               <div class="col-lg-6">               
@@ -48,7 +48,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Information staff</h1>
                   </div>
-                  <form class="user" method="POST">
+                  <form class="user" method="POST">                   
                     <div class="form-group">
                       <input type="text" style="text-align: center;" class="form-control form-control-user" id="idStaff" name="idStaff"  placeholder="0" lable = "id: " value= "<%= staff.id  %>"  readonly="readonly" >
                     </div>
@@ -60,7 +60,13 @@
                     </div>                   
                     <div class="form-group">
                       <input type="email" style="text-align: center;" class="form-control form-control-user" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="input an email" value= "<%= staff.email  %>" >
-                    </div>                             
+                    </div>    
+                    <div class="form-group">
+                      <a class="btn btn-primary btn-user btn-block" href="/staff/profile/password" role="button">Change Password</a>
+                    </div>        
+                    <div class="form-group">
+                      <a class="btn btn-primary btn-user btn-block" href="/staff/profile/avartar" role="button">Update Avartar Image</a>
+                    </div>                         
                     <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-primary btn-user btn-block" value="Edit Profile">
                     </div>

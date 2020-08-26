@@ -69,7 +69,7 @@ class Staff extends MODEL{
         })
     };
 
-    static async updateStaff(id, fullName, email, officeBank){
+    static async updateStaff(id, fullName, email, officeBank){       
         return Staff.update({
             fullName: fullName,
             email: email,

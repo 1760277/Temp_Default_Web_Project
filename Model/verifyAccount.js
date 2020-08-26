@@ -6,7 +6,7 @@ const MODEL = SEQUELIZE.Model;
 
 class VerifyAccount extends MODEL {
 
-    static async createDefault(customId, fullName ) {
+    static async createDefault(customId, fullName) {
 
         return VerifyAccount.create(
             {
@@ -15,21 +15,20 @@ class VerifyAccount extends MODEL {
             }
         )
     };
-    static async findByCustomId(customId){
+    static async findByCustomId(id) {
         return VerifyAccount.findOne({
-            where:{
-                customId
+            where: {
+                customId: id
             }
         })
     }
-    static async updateAccount(id, fullName, birthDate, address, frontNationID, behindNationID,numberNationID, dateRange, addressRange) {
+
+    static async updateAccount(id, fullName, birthDate, address, numberNationID, dateRange, addressRange) {
         return VerifyAccount.update(
             {
                 fullName: fullName,
                 birthDate: birthDate,
                 address: address,
-                frontNationID: frontNationID,
-                behindNationID: behindNationID,
                 numberNationID: numberNationID,
                 dateRange: dateRange,
                 addressRange: addressRange,
@@ -39,19 +38,29 @@ class VerifyAccount extends MODEL {
             where: { customId: id }
         });
     };
+    static async updateProfile(id, fullName) {
+        return VerifyAccount.update(
+            {
+                fullName: fullName,
+            }, {
 
+            where: { customId: id }
+        });
+    };
     static async updateStatus(id) {
         verifyPassWord.update({
             status: true
         },
             {
-                where: { customId: id }
+                where:
+                    { customId: id }
             });
     };
 
-    static async findInfoByUserId(customId) {
+    static async findInfoByUserId(id) {
         return VerifyAccount.findOne({
-            where: customId,
+            where:
+                { customId: id }
         })
     };
 
@@ -61,35 +70,34 @@ class VerifyAccount extends MODEL {
 
     static async updateRequest_False(id) {
         VerifyAccount.update({
-            requestVerify: false
+            requestVerify: false,
+            status: true,
         },
             {
-                where: { customId: id }
+                where: {
+                    customId: id
+                }
             });
     };
 
     static async updateRequest_True(id) {
         VerifyAccount.update({
-            requestVerify: true
+            requestVerify: true,
+           
         },
             {
                 where: { customId: id }
             });
     };
 
-    async getRequestDone() {
-        this.requestVerify = fasle;
-        return this.save();
-    };
-    
     static async findAllRequestNotCheck() {
         return VerifyAccount.findAll({
             where: {
-                requestVerify: true,
+                requestVerify: true,                
             }
         });
     };
-
+    
 }
 VerifyAccount.init({
     fullName: {
@@ -102,14 +110,6 @@ VerifyAccount.init({
     },
     address: {
         type: SEQUELIZE.STRING,
-        allowNull: true,
-    },
-    frontNationID: {
-        type: SEQUELIZE.BLOB,
-        allowNull: true,
-    },
-    behindNationID: {
-        type: SEQUELIZE.BLOB,
         allowNull: true,
     },
     numberNationID: {

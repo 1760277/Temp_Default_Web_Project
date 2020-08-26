@@ -1,58 +1,84 @@
- <%- include('User_Header', {title: 'Accuracy'}); -%>
-   
+<%- include('User_Header', {title: 'Accuracy'}); -%>
 
-	<div class="w3ls-section contact">
-		<div class="container"> 
-			<div class="w3ls-title">
-				<h2 class="h3-w3l">Accuracy Information</h2> 
-			</div>
-			<div class="contact_wthreerow agileits-w3layouts">
-				<div class="col-md-5 agileits_w3layouts_contact_gridl">
-					<div class="agileits_mail_grid_right_grid">
-						<h4>upload file</h4>                        
-                            <div class="custom-file">
-                                <label class="custom-file-label" for="customFileBefore">Choose file</label>   
-                                <input type="file" class="custom-file-input" id="customFileBefore">    
-                            </div>                           
-            		</div> 
-					<div class="agileits_mail_grid_right_grid">
-						<h4>upload file</h4>
-						<div class="custom-file">
-                            <label class="custom-file-label" for="customFileAfter">Choose file</label>
-                            <input type="file" class="custom-file-input" id="customFileAfter">          
-                          </div>
-					</div>
+
+<div class="w3ls-section contact">
+	<div class="container">
+		<div class="w3ls-title">
+			<a id="linkOne" href="/custom/profile">
+				<h1 class="text-center" style="padding-top: 50px;">PROFILE CUSTOM</h1>
+			</a>
+
+		</div>
+		<div class="contact_wthreerow agileits-w3layouts">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<img style="object-fit: cover;" src="/uploads/<%= img1!=null && verifyAccount.customId == img1.customId ? img1.name : img1 %>"
+						alt="Girl in a jacket" width="450" height="250">
+					<img style="object-fit: cover;" src="/uploads/<%= img2!=null && verifyAccount.customId == img2.customId? img2.name : img2 %>"
+						alt="Girl in a jacket" width="450" height="250">
 				</div>
-				<div class="col-md-7 w3l_contact_form">
-					<h4>Accuracy Form</h4> 
-					<form  method="post">		
-						<div class="form-group">
-							<input type="text" style="text-align: center;" class="form-control form-control-user" id="fullName" name="fullName"  placeholder="full name" value="<%= verifyAccount.fullName %>" >
+				<div class="col-sm-1"></div>
+				<div class="col-md-5 w3l_contact_form">
+					<h4 style="padding-bottom: 17px; text-align: center;">Accuracy Form</h4>
+					<form method="post">
+
+						<div class="form-group" style="padding-bottom: 10px;">
+							<input type="text" style="text-align: center; " class="form-control form-control-user"
+								id="fullName" name="fullName" placeholder="full name"
+								value="<%= verifyAccount.fullName %>">
 						</div>
-						<div class="form-group">
-							<input type="date" style="text-align: center;" class="form-control form-control-user" id="birthDate" name="birthDate"  placeholder="00/00/0000" value=<%= verifyAccount.birthDate %> >
+						<div class="form-group" style="padding-bottom: 10px;">
+							<input type="date" style="text-align: center; padding-bottom: 17px; "
+								class="form-control form-control-user" id="birthDate" name="birthDate"
+								placeholder="00/00/0000" value=<%= verifyAccount.birthDate %>>
 						</div>
+						<div class="form-group" style="padding-bottom: 10px;">
+							<input type="text" style="text-align: center;" class="form-control form-control-user"
+								id="address" name="address" placeholder="address" value="<%= verifyAccount.address %>">
+						</div>
+						<div class="form-group" style="padding-bottom: 10px;">
+							<input type="text" style="text-align: center;" class="form-control form-control-user"
+								id="numberNationID" name="numberNationID" placeholder="number NationID"
+								value=<%= verifyAccount.numberNationID %>>
+						</div>
+						<div class="form-group" style="padding-bottom: 10px;">
+							<input type="date" style="text-align: center;" class="form-control form-control-user"
+								id="dateRange" name="dateRange" placeholder="00/00/0000"
+								value=<%= verifyAccount.dateRange %>>
+						</div>
+						<div class="form-group" style="padding-bottom: 10px;">
+							<input type="text" style="text-align: center;" class="form-control form-control-user"
+								id="addressRange" name="addressRange" placeholder="address range"
+								value="<%= verifyAccount.addressRange %>">
+						</div>
+
+
+
+						<% if(img1!= null && verifyAccount.customId != img1.customId ){%>
 						<div class="form-group">
-							<input type="text" style="text-align: center;" class="form-control form-control-user" id="address" name="address"  placeholder="address" value="<%= verifyAccount.address %>"  >
-						</div>		
-						<div class="form-group">
-							<input type="text" style="text-align: center;" class="form-control form-control-user" id="numberNationID" name="numberNation ID"  placeholder="number NationID" value=<%= verifyAccount.numberNationID %>  >
-						</div>  
-						<div class="form-group">
-							<input type="date" style="text-align: center;" class="form-control form-control-user" id="dateRange" name="dateRange"  placeholder="00/00/0000" value=<%= verifyAccount.dateRange %> >
-						</div>   
-						<div class="form-group">
-							<input type="text" style="text-align: center;" class="form-control form-control-user" id="addressRange" name="addressRange"  placeholder="address range" value="<%= verifyAccount.addressRange %>"  >
-						</div>       									
-						<input type="submit" value="Submit"  >
+							<a class="btn btn-secondary btn-user btn-block"
+								href="/custom/profile/accuracy/ImageNumberID1" role="button">Update Image
+								numberNationID</a>
+						</div>
+						
+						<% }else{%>
+							<p style="color:red"> Image has been Existed</p>
+						<%} %>
+						<div class="col-sm-12 text-center" style="padding-bottom: 20px;">
+							<input class="text-center" type="submit" value="Submit">
+						</div>
+						
 					</form>
+
+
+					<div class="clearfix"> </div>
+					</script>
 				</div>
-				
-				<div class="clearfix"> </div>
 			</div>
 		</div>
 	</div>
-	<!-- //contact --> 
+	<!-- //contact -->
+</div>
 
-
-<%- include('User_Footer'); -%> 
+<%- include('User_Footer'); -%>

@@ -6,14 +6,15 @@ const ASYNC_HANDLER = require('express-async-handler');
 const ROUTER = new Router();
 
 ROUTER.get('/', function getLoginCustomer(req, res){
-    res.render('Login_Custom');
+    const errors =null;
+    res.render('Login_Custom',{errors:errors});
 });
 
 ROUTER.post('/',ASYNC_HANDLER(async function(req,res){
     const cusTom=await CUSTOM.findByUsername(req.body.userName);
     console.log(cusTom);
     if(!cusTom || !CUSTOM.verifyPassWord(req.body.password,cusTom.passWord)){
-        return res.render('Login_Custom');
+        return res.render('Login_Custom',{errors:'username or password fail'});
     }
     req.session.cusTomId = cusTom.id;
     

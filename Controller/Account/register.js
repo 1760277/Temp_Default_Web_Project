@@ -15,7 +15,8 @@ const ROUTER = new Router();
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 ROUTER.get('/', function getRegisterCustomer(req, res){
-    res.render('Register')
+    const errors=[];
+    res.render('Register',{errors:errors})
 });
 ROUTER.post('/',[
     body('email')
@@ -32,7 +33,7 @@ ROUTER.post('/',[
         .trim()
         .notEmpty(), 
     body('password')
-        .isLength ({min:6}),
+        .isLength ({min:6})
 ], ASYNC_HANDLER( async function(req, res){
     const errors = validationResult(req) ;
     console.log(errors);
@@ -54,7 +55,8 @@ ROUTER.post('/',[
 }));
 
 ROUTER.get('/staff', function getRegisterStaff(req, res){
-    res.render('Register_Staff');
+    const errors = [];
+    res.render('Register_Staff', {errors : errors});
 });
 
 ROUTER.post('/staff', [

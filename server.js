@@ -20,14 +20,14 @@ app.use(require('./Middleware/staff_auth'));
 app.use('/', require('./Controller/index'));
 app.use('/login', require('./Controller/Account/login'));
 app.use('/register', require('./Controller/Account/register'));
-app.use('/custom', require('./Controller/custom'));
-app.use('/staff', require('./Controller/Admin/staff'));
 app.get('/logout',require('./Controller/Account/logout'));
-app.use('/admin', require('./Controller/Admin/admin'));
-app.use('/random',require('./Model/radomcustom'));
-app.use('/payment',require('./Controller/Cutomer/payment'));
+app.use('/custom', require('./Controller/custom'));
 app.use('/inforaccount',require('./Controller/Cutomer/inforAccount'));
+app.use('/staff', require('./Controller/Admin/staff'));
+app.use('/admin', require('./Controller/Admin/admin'));
+app.use('/payment',require('./Controller/Cutomer/payment'));
 app.use('/savingAccount', require('./Controller/savingAccount'));
+app.use('/forgotpassword',require('./Controller/Account/forgotpassword'));
 
 app.use(EXPRESS.static('Static'));
 

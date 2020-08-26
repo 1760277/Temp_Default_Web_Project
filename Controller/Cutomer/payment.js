@@ -19,7 +19,7 @@ ROUTER.use(REQUIRED_LOGIN_CUSTOM);
 ROUTER.get('/', ASYNC_HANDLER( async function (req, res){
     accountNumber = req.currentCustom.accountNumber;
     const paymentAC = await PAYMENTACCOUNT.findbyAccountNumber(accountNumber);
-    res.render('Payment',{paymentAC:paymentAC});
+    res.render('Payment',{paymentAC:paymentAC,errors:null,messeger:null});
 }));
 
 ROUTER.post('/',[
@@ -38,6 +38,11 @@ ROUTER.post('/',[
         .isInt(),
 ], ASYNC_HANDLER(async function(req,res){
     const errors = validationResult(req) ;
+    if(!errors.isEmpty()){
+        accountNumber = req.currentCustom.accountNumber;
+        const paymentAC = await PAYMENTACCOUNT.findbyAccountNumber(accountNumber);
+        return res.status(422).render('Payment',{errors: errors.array(),messeger:null,paymentAC:paymentAC});
+    }
     accountNumber = req.currentCustom.accountNumber;
     // lấy thông tin custom
     const customsend = await CUSTOMER.findByAccountNumber(accountNumber);
@@ -60,7 +65,7 @@ ROUTER.post('/',[
         await DETAILSPAYMENT.createDetalsPayment(code,req.body.availableBalance,req.body.moneyDeposit,req.body.contentPayment,payment.id)
         const moneysend = payAC.availableBalance - payment.moneyDeposit;
         await PAYMENTACCOUNT.updateBalace(moneysend,accountNumber);
-        res.redirect('/payment');
+        res.render('Payment',{messeger:"Quý khách vui lòng xác thực email để hoàn tất chuyển tiền ",errors:null,paymentAC:customsend});
     }
     else{
         res.redirect('Payment');

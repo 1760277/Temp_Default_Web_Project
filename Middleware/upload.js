@@ -1,14 +1,17 @@
-// const MULTER = require('multer');
-// const PATH = require('path');
+const multer = require('multer');
+const path = require('path');
 
-// const STORAGE = MULTER.diskStorage({
-//     destination:'./user/images/',
-//     filename: function(req, file, cb){
-//         cb(null, file.fieldname + '-' + Date.now()+ PATH.extname(file.originalname));
-//     }
-// });
-// const UPLOAD = MULTER({
-//     storage: STORAGE
-// }).single('img-profile');
+const storage = multer.diskStorage({
+    destination: './static/uploads/',
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() +
+            path.extname(file.originalname));
+    }
+});
+const upload = multer({
+    storage: storage
+});
 
-// module.exports = UPLOAD;
+
+module.exports = upload;
+

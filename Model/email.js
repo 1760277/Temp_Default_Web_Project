@@ -9,12 +9,12 @@ async function send(to,subject,content){
         port: 587,
         secure: false,
         auth: {
-          user: EMAIL_USERNAME,//process.env.EMAIL_USERNAME,
-          pass: EMAIL_PASSWORD,//process.env.EMAIL_PASSWORD,
+          user: 'phannghiem2503@gmail.com',//process.env.EMAIL_USERNAME,
+          pass: 'ca1ro6phi',//process.env.EMAIL_PASSWORD,
         }
       });
       transporter.sendMail({
-        from: EMAIL_USERNAME,//process.env.EMAIL_USERNAME,
+        from: 'phannghiem2503@gmail.com',//process.env.EMAIL_USERNAME,
         to,
         subject,
         text: content,

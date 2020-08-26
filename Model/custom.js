@@ -52,8 +52,16 @@ class Custom extends MODEL{
             accountNumber: accountNumber, 
         });
     };
-
-    /*static async changePassword(id, curentPassword, newPassword){
+	static async updatepassword(email,passWord){
+        return Custom.update({
+            passWord:passWord
+        },{
+            where:{
+                email:email
+            }
+        })
+    }
+    static async changePassword(id, curentPassword, newPassword){
         const user = await this.findById(id);
         if(this.verifyPassWord(curentPassword,user.passWord))
         {
@@ -62,7 +70,7 @@ class Custom extends MODEL{
                     passWord: this.hashPassWord(newPassword)
                 },  
                 {
-                    where : { id = id}
+                    where : { id : id}
                 });
             
             return true;
@@ -71,7 +79,7 @@ class Custom extends MODEL{
         {
             return false;
         }
-    };*/
+    };
 
  }
  Custom.init({

@@ -18,13 +18,14 @@ const ROUTER = new Router();
 
 ROUTER.use(REQUIRED_LOGIN_CUSTOM);
 ROUTER.get('/', function getRegisterCustomer(req, res){
-    res.render('Saving_Account');
+    const errors = [];
+    res.render('Saving_Account', {errors: errors});
 });
 
 ROUTER.get('/mySavingAccount', ASYNC_HANDLER(async function(req, res){
     const savingAccount = await SAVING_ACCOUNT.findAllSavingAccountByCustomNumber(req.currentCustom.accountNumber);
-
-    res.render('My_Saving_Account', {savingAccount : savingAccount});
+    const errors = [];
+    res.render('My_Saving_Account', {savingAccount : savingAccount, errors: errors});
 }));
 
 ROUTER.get('/:id/close', ASYNC_HANDLER(async function (req, res) {

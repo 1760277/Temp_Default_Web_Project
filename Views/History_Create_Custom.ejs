@@ -12,7 +12,8 @@
                       <th>Name</th>
                       <th>email</th>
                       <th>Number</th>
-                      <th>Create At</th>                     
+                      <th>Create At</th>  
+                      <th>Status</th>                     
                     </tr>
                   </thead>
                   <tfoot>
@@ -20,18 +21,22 @@
                       <th>Name</th>
                       <th>email</th>
                       <th>Number</th>
-                      <th>Create At</th>                      
+                      <th>Create At</th>       
+                      <th>Status</th>    
                     </tr>
                   </tfoot>
                   <tbody>
                     <% if (lst) { %>
                      <% for( let index = 0; index < lst.length; index++ ) { %>
+                      <%  for( let i = 0; i < verifyAccount.length; i++ ){ %> 
                       <tr>
-                        <td><%= verifyAccount[index].fullName %></td>
+                        <td><%= verifyAccount[i].fullName %></td>
                         <td><%= lst[index].email %></td>
                         <td><%= lst[index].accountNumber %> </td>
-                        <td><%= moment(lst[index].createdAt).format( 'DD-MM-YYYY')  %></td>                       
+                        <td><%= moment(lst[index].createdAt).format( 'DD-MM-YYYY')  %></td>  
+                        <td><%= verifyAccount[i].status === true ? "Verified" : "Non Verify" %> </td>                     
                       </tr>
+                      <% } %>
                      <% } %>>
                     <% } %>                   
                   </tbody>
